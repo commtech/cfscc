@@ -22,7 +22,10 @@
 
 #include <stdio.h>
 #include <fcntl.h> /* open, O_RDWR */
+
+#ifndef _WIN32
 #include <unistd.h> /* write, close */
+#endif
 
 #include "fscc.h"
 #include "errno.h"
@@ -109,7 +112,7 @@ int ioctl_get_integer(fscc_handle h, int ioctl_name, int *value)
 
 	result = DeviceIoControl(h, (DWORD)ioctl_name,
 		                     NULL, 0,
-							 modifiers, sizeof(*modifiers),
+							 value, sizeof(*value),
 							 &temp, (LPOVERLAPPED)NULL);
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
@@ -144,7 +147,7 @@ int ioctl_get_integer(fscc_handle h, int ioctl_name, int *value)
 
 */
 /******************************************************************************/
-int fscc_connect(unsigned port_num, int *fd)
+int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h)
 {
     char name[MAX_NAME_LENGTH];
 
@@ -169,9 +172,9 @@ int fscc_connect(unsigned port_num, int *fd)
 #else
     sprintf(name, "/dev/fscc%u", port_num);
 
-    *fd = open(name, O_RDWR);
+    *h = open(name, O_RDWR);
 
-    return (*fd != -1) ? 0 : errno;
+    return (*h != -1) ? 0 : errno;
 #endif
 }
 
@@ -257,7 +260,7 @@ int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers)
 
 */
 /******************************************************************************/
-int fscc_set_memory_cap(int fd, const struct fscc_memory_cap *memcap)
+int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
 {
     int result;
 
@@ -297,7 +300,7 @@ int fscc_set_memory_cap(int fd, const struct fscc_memory_cap *memcap)
 
 */
 /******************************************************************************/
-int fscc_get_memory_cap(int fd, struct fscc_memory_cap *memcap)
+int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
 {
     int result;
 
@@ -337,7 +340,7 @@ int fscc_get_memory_cap(int fd, struct fscc_memory_cap *memcap)
 
 */
 /******************************************************************************/
-int fscc_set_registers(int fd, const struct fscc_registers *regs)
+int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs)
 {
     int result;
 
@@ -377,7 +380,7 @@ int fscc_set_registers(int fd, const struct fscc_registers *regs)
 
 */
 /******************************************************************************/
-int fscc_get_registers(int fd, struct fscc_registers *regs)
+int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 {
     int result;
 
@@ -696,7 +699,7 @@ int fscc_disable_rx_multiple(fscc_handle h)
 
 */
 /******************************************************************************/
-int fscc_purge(int fd, unsigned tx, unsigned rx)
+int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 {
     int result;
 
@@ -774,7 +777,7 @@ int fscc_purge(int fd, unsigned tx, unsigned rx)
 
 */
 /******************************************************************************/
-int fscc_set_clock_frequency(int fd, unsigned frequency, unsigned ppm)
+int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm)
 {
     unsigned char clock_bits[20];
     int result;
@@ -821,11 +824,19 @@ int fscc_set_clock_frequency(int fd, unsigned frequency, unsigned ppm)
 
 */
 /******************************************************************************/
-int fscc_write(int fd, char *buf, unsigned size, unsigned *bytes_written)
+int fscc_write(fscc_handle h, char *buf, unsigned size, 
+               unsigned *bytes_written, OVERLAPPED *o)
 {
+#ifdef _WIN32
+    BOOL result;
+        
+	result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
+
+	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+#else
     int ret;
 
-    ret = write(fd, buf, size);
+    ret = write(h, buf, size);
 
     if (ret == -1)
         return errno;
@@ -833,6 +844,7 @@ int fscc_write(int fd, char *buf, unsigned size, unsigned *bytes_written)
     *bytes_written = ret;
 
     return 0;
+#endif
 }
 
 /******************************************************************************/
@@ -858,11 +870,19 @@ int fscc_write(int fd, char *buf, unsigned size, unsigned *bytes_written)
 
 */
 /******************************************************************************/
-int fscc_read(int fd, char *buf, unsigned size, unsigned *bytes_read)
+int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, 
+              OVERLAPPED *o)
 {
+#ifdef _WIN32
+	BOOL result;
+
+	result = ReadFile(h, buf, size, (DWORD*)bytes_read, o);
+
+	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+#else    
     int ret;
 
-    ret = read(fd, buf, size);
+    ret = read(h, buf, size);
 
     if (ret == -1)
         return errno;
@@ -870,6 +890,7 @@ int fscc_read(int fd, char *buf, unsigned size, unsigned *bytes_read)
     *bytes_read = ret;
 
     return 0;
+#endif
 }
 
 /******************************************************************************/
@@ -887,11 +908,19 @@ int fscc_read(int fd, char *buf, unsigned size, unsigned *bytes_read)
 
 */
 /******************************************************************************/
-int fscc_disconnect(int fd)
+int fscc_disconnect(fscc_handle h)
 {
+#ifdef _WIN32
+	BOOL result;
+
+	result = CloseHandle(h);
+
+	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+#else
     int result;
 
-    result = close(fd);
+    result = close(h);
 
     return (result != -1) ? 0 : errno;
+#endif
 }
