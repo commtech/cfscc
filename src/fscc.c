@@ -31,6 +31,8 @@
 #include "errno.h"
 #include "calculate-clock-bits.h"
 
+#define UNUSED(x) (void)(x)
+
 #define MAX_NAME_LENGTH 25
 
 int ioctl_action(fscc_handle h, int ioctl_name)
@@ -170,6 +172,8 @@ int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h)
 
 	return (*h != INVALID_HANDLE_VALUE) ? ERROR_SUCCESS : GetLastError();
 #else
+    UNUSED(overlapped);
+
     sprintf(name, "/dev/fscc%u", port_num);
 
     *h = open(name, O_RDWR);
@@ -268,13 +272,13 @@ int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
 	DWORD temp;
 
 	result = DeviceIoControl(h, (DWORD)FSCC_SET_MEMORY_CAP,
-		                     (struct fscc_memory_cap *)memcap, sizeof(*memcap), 
-							 NULL, 0, 
+		                     (struct fscc_memory_cap *)memcap, sizeof(*memcap),
+							 NULL, 0,
 							 &temp, (LPOVERLAPPED)NULL);
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
 #else
-    result = ioctl(fd, FSCC_SET_MEMORY_CAP, memcap);
+    result = ioctl(h, FSCC_SET_MEMORY_CAP, memcap);
 
     return (result != -1) ? 0 : errno;
 #endif
@@ -314,7 +318,7 @@ int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
 #else
-    result = ioctl(fd, FSCC_GET_MEMORY_CAP, memcap);
+    result = ioctl(h, FSCC_GET_MEMORY_CAP, memcap);
 
     return (result != -1) ? 0 : errno;
 #endif
@@ -347,14 +351,14 @@ int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs)
 #ifdef _WIN32
 	DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)FSCC_SET_REGISTERS, 
-		                     (struct fscc_registers *)regs, sizeof(*regs), 
-							  NULL, 0, 
+	result = DeviceIoControl(h, (DWORD)FSCC_SET_REGISTERS,
+		                     (struct fscc_registers *)regs, sizeof(*regs),
+							  NULL, 0,
 							  &temp, (LPOVERLAPPED)NULL);
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
 #else
-    result = ioctl(fd, FSCC_SET_REGISTERS, regs);
+    result = ioctl(h, FSCC_SET_REGISTERS, regs);
 
     return (result != -1) ? 0 : errno;
 #endif
@@ -394,7 +398,7 @@ int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
 #else
-    result = ioctl(fd, FSCC_GET_REGISTERS, regs);
+    result = ioctl(h, FSCC_GET_REGISTERS, regs);
 
     return (result != -1) ? 0 : errno;
 #endif
@@ -707,19 +711,19 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 	DWORD temp;
 
 	if (tx) {
-		result = DeviceIoControl(h, (DWORD)FSCC_PURGE_TX, 
-			                     NULL, 0, 
-								 NULL, 0, 
+		result = DeviceIoControl(h, (DWORD)FSCC_PURGE_TX,
+			                     NULL, 0,
+								 NULL, 0,
 								 &temp, NULL);
 
 		if (result == FALSE)
 				return GetLastError();
 	}
-        
+
 	if (rx) {
-		result = DeviceIoControl(h, (DWORD)FSCC_PURGE_RX, 
-			                     NULL, 0, 
-								 NULL, 0, 
+		result = DeviceIoControl(h, (DWORD)FSCC_PURGE_RX,
+			                     NULL, 0,
+								 NULL, 0,
 								 &temp, NULL);
 
 		if (result == FALSE) {
@@ -736,14 +740,14 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 	}
 #else
     if (tx) {
-        result = ioctl(fd, FSCC_PURGE_TX);
+        result = ioctl(h, FSCC_PURGE_TX);
 
         if (result == -1)
             return errno;
     }
 
     if (rx) {
-        result = ioctl(fd, FSCC_PURGE_RX);
+        result = ioctl(h, FSCC_PURGE_RX);
 
         if (result == -1)
             return errno;
@@ -795,7 +799,7 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm)
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
 #else
-    result = ioctl(fd, FSCC_SET_CLOCK_BITS, &clock_bits);
+    result = ioctl(h, FSCC_SET_CLOCK_BITS, &clock_bits);
 
     return (result != -1) ? 0 : errno;
 #endif
@@ -824,17 +828,18 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm)
 
 */
 /******************************************************************************/
-int fscc_write(fscc_handle h, char *buf, unsigned size, 
+int fscc_write(fscc_handle h, char *buf, unsigned size,
                unsigned *bytes_written, OVERLAPPED *o)
 {
 #ifdef _WIN32
     BOOL result;
-        
+
 	result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
 #else
     int ret;
+    UNUSED(o);
 
     ret = write(h, buf, size);
 
@@ -870,7 +875,7 @@ int fscc_write(fscc_handle h, char *buf, unsigned size,
 
 */
 /******************************************************************************/
-int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, 
+int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
               OVERLAPPED *o)
 {
 #ifdef _WIN32
@@ -879,8 +884,9 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
 	result = ReadFile(h, buf, size, (DWORD*)bytes_read, o);
 
 	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
-#else    
+#else
     int ret;
+    UNUSED(o);
 
     ret = read(h, buf, size);
 
