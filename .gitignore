@@ -4,3 +4,6 @@
 *.obj
 *.dll
 *.bak
+*.lib
+*.exp
+*.exe
