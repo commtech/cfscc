@@ -35,6 +35,31 @@
 
 #define MAX_NAME_LENGTH 25
 
+int translate_error(int e)
+{
+#ifdef _WIN32
+    switch (e) {
+        case STATUS_IO_TIMEOUT:
+            return FSCC_TIMEOUT;
+        case STATUS_BUFFER_TOO_SMALL:
+            return FSCC_BUFFER_TOO_SMALL;
+    default:
+        return e;
+    }
+#else
+    switch (e) {
+        case -EOPNOTSUPP:
+            return FSCC_INCORRECT_MODE;
+        case -ETIMEDOUT:
+            return FSCC_TIMEOUT;
+        case -ENOBUFS:
+            return FSCC_BUFFER_TOO_SMALL;
+    default:
+        return e;
+    }
+#endif
+}
+
 int ioctl_action(fscc_handle h, int ioctl_name)
 {
     int result;
@@ -47,11 +72,11 @@ int ioctl_action(fscc_handle h, int ioctl_name)
 							 NULL, 0,
 							 &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name);
 
-    return (result != -1) ? 0 : errno;
+    return (result != -1) ? 0 : translate_error(errno);
 #endif
 }
 
@@ -77,11 +102,11 @@ int ioctl_get_boolean(fscc_handle h, int ioctl_name, unsigned *status)
 							 status, sizeof(*status),
 							 &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name, status);
 
-    return (result != -1) ? 0 : errno;
+    return (result != -1) ? 0 : translate_error(errno);
 #endif
 }
 
@@ -97,11 +122,11 @@ int ioctl_set_integer(fscc_handle h, int ioctl_name, int value)
 							 NULL, 0,
 							 &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name, &value);
 
-    return (result != -1) ? 0 : errno;
+    return (result != -1) ? 0 : translate_error(errno);
 #endif
 }
 
@@ -117,11 +142,11 @@ int ioctl_get_integer(fscc_handle h, int ioctl_name, int *value)
 							 value, sizeof(*value),
 							 &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name, value);
 
-    return (result != -1) ? 0 : errno;
+    return (result != -1) ? 0 : translate_error(errno);
 #endif
 }
 
@@ -138,13 +163,13 @@ int ioctl_set_pointer(fscc_handle h, int ioctl_name, const void *value,
 							     NULL, 0,
 							     &temp, (LPOVERLAPPED)NULL);
 
-	    return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	    return (result == TRUE) ? 0 : translate_error(GetLastError());
     #else
         UNUSED(size);
 
         result = ioctl(h, ioctl_name, value);
 
-        return (result != -1) ? 0 : errno;
+        return (result != -1) ? 0 : translate_error(errno);
     #endif
 }
 
@@ -161,13 +186,13 @@ int ioctl_get_pointer(fscc_handle h, int ioctl_name, void *value,
 							 value, size,
 							 &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(size);
 
     result = ioctl(h, ioctl_name, value);
 
-    return (result != -1) ? 0 : errno;
+    return (result != -1) ? 0 : translate_error(errno);
 #endif
 }
 
@@ -184,13 +209,13 @@ int ioctl_getset_pointer(fscc_handle h, int ioctl_name, void *value,
 							 value, size,
 							 &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(size);
 
     result = ioctl(h, ioctl_name, value);
 
-    return (result != -1) ? 0 : errno;
+    return (result != -1) ? 0 : translate_error(errno);
 #endif
 }
 

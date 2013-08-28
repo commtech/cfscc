@@ -41,6 +41,7 @@ extern "C"
 #define FSCC_MEMORY_CAP_INIT(memory_cap) memset(&memory_cap, -1, sizeof(memory_cap))
 #define FSCC_UPDATE_VALUE -2
 
+enum error_type { FSCC_TIMEOUT=16000, FSCC_INCORRECT_MODE, FSCC_BUFFER_TOO_SMALL };
 enum transmit_type { XF=0, XREP=1, TXT=2, TXEXT=4 };
 
 #ifdef _WIN32
