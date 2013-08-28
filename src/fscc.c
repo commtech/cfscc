@@ -264,7 +264,7 @@ int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h)
 			NULL
 	);
 
-	return (*h != INVALID_HANDLE_VALUE) ? ERROR_SUCCESS : GetLastError();
+	return (*h != INVALID_HANDLE_VALUE) ? 0 : GetLastError();
 #else
     UNUSED(overlapped);
 
@@ -824,7 +824,7 @@ int fscc_write(fscc_handle h, char *buf, unsigned size,
 
 	result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : GetLastError();
 #else
     UNUSED(o);
 
@@ -870,7 +870,7 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
 
 	result = ReadFile(h, buf, size, (DWORD*)bytes_read, o);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : GetLastError();
 #else
     UNUSED(o);
 
@@ -907,7 +907,7 @@ int fscc_disconnect(fscc_handle h)
 #ifdef _WIN32
 	result = CloseHandle(h);
 
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
+	return (result == TRUE) ? 0 : GetLastError();
 #else
 
     result = close(h);
