@@ -820,8 +820,6 @@ int fscc_write(fscc_handle h, char *buf, unsigned size,
     int result;
 
 #ifdef _WIN32
-    BOOL result;
-
 	result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
 
 	return (result == TRUE) ? 0 : GetLastError();
