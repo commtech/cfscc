@@ -159,7 +159,7 @@ int ioctl_set_pointer(fscc_handle h, int ioctl_name, const void *value,
 	    DWORD temp;
 
 	    result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                         value, size,
+		                         (void *)value, size,
 							     NULL, 0,
 							     &temp, (LPOVERLAPPED)NULL);
 
