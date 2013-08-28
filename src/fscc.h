@@ -176,30 +176,30 @@ typedef HANDLE fscc_handle;
 typedef int fscc_handle;
 #endif
 
-int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h);
-int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers);
-int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers);
-int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap);
-int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap);
-int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs);
-int fscc_get_registers(fscc_handle h, struct fscc_registers *regs);
-int fscc_get_append_status(fscc_handle h, unsigned *status);
-int fscc_enable_append_status(fscc_handle fd);
-int fscc_disable_append_status(fscc_handle h);
-int fscc_get_append_timestamp(fscc_handle h, unsigned *status);
-int fscc_enable_append_timestamp(fscc_handle h);
-int fscc_disable_append_timestamp(fscc_handle h);
-int fscc_get_ignore_timeout(fscc_handle h, unsigned *status);
-int fscc_enable_ignore_timeout(fscc_handle h);
-int fscc_disable_ignore_timeout(fscc_handle h);
-int fscc_get_rx_multiple(fscc_handle h, unsigned *status);
-int fscc_enable_rx_multiple(fscc_handle h);
-int fscc_disable_rx_multiple(fscc_handle h);
-int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
-int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
-int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
-int fscc_disconnect(fscc_handle h);
-int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm);
+__declspec(dllexport) int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h);
+__declspec(dllexport) int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers);
+__declspec(dllexport) int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers);
+__declspec(dllexport) int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap);
+__declspec(dllexport) int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap);
+__declspec(dllexport) int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs);
+__declspec(dllexport) int fscc_get_registers(fscc_handle h, struct fscc_registers *regs);
+__declspec(dllexport) int fscc_get_append_status(fscc_handle h, unsigned *status);
+__declspec(dllexport) int fscc_enable_append_status(fscc_handle fd);
+__declspec(dllexport) int fscc_disable_append_status(fscc_handle h);
+__declspec(dllexport) int fscc_get_append_timestamp(fscc_handle h, unsigned *status);
+__declspec(dllexport) int fscc_enable_append_timestamp(fscc_handle h);
+__declspec(dllexport) int fscc_disable_append_timestamp(fscc_handle h);
+__declspec(dllexport) int fscc_get_ignore_timeout(fscc_handle h, unsigned *status);
+__declspec(dllexport) int fscc_enable_ignore_timeout(fscc_handle h);
+__declspec(dllexport) int fscc_disable_ignore_timeout(fscc_handle h);
+__declspec(dllexport) int fscc_get_rx_multiple(fscc_handle h, unsigned *status);
+__declspec(dllexport) int fscc_enable_rx_multiple(fscc_handle h);
+__declspec(dllexport) int fscc_disable_rx_multiple(fscc_handle h);
+__declspec(dllexport) int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
+__declspec(dllexport) int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
+__declspec(dllexport) int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
+__declspec(dllexport) int fscc_disconnect(fscc_handle h);
+__declspec(dllexport) int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm);
 
 #ifdef __cplusplus
 }
