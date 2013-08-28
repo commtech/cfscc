@@ -785,25 +785,10 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm)
 {
     unsigned char clock_bits[20];
-    int result;
-#ifdef _WIN32
-    DWORD temp;
-#endif
 
     calculate_clock_bits(frequency, ppm, clock_bits);
 
-#ifdef _WIN32
-	result = DeviceIoControl(h, (DWORD)FSCC_SET_CLOCK_BITS,
-		                     &clock_bits, sizeof(clock_bits),
-							 NULL, 0,
-							 &temp, (LPOVERLAPPED)NULL);
-
-	return (result == TRUE) ? ERROR_SUCCESS : GetLastError();
-#else
-    result = ioctl(h, FSCC_SET_CLOCK_BITS, &clock_bits);
-
-    return (result != -1) ? 0 : errno;
-#endif
+    return ioctl_set_pointer(h, FSCC_SET_CLOCK_BITS, clock_bits, sizeof(clock_bits));
 }
 
 /******************************************************************************/
