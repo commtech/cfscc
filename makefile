@@ -2,6 +2,7 @@ SHELL = /bin/sh
 TARGET = cfscc.so
 
 SRCS = $(shell echo src/*.c)
+HEADERS = $(shell echo src/*.h)
 OBJS = $(SRCS:.c=.o)
 
 CFLAGS = -fPIC -Wall -Wextra
@@ -11,8 +12,8 @@ CC = gcc
 
 all: $(TARGET)
 
-$(TARGET): $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $(TARGET) -lm
+$(TARGET): $(HEADERS) $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(HEADERS) $(OBJS) -o $(TARGET) -lm
 
 clean:
 	rm src/*.o
