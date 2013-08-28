@@ -739,54 +739,21 @@ int fscc_disable_rx_multiple(fscc_handle h)
 /******************************************************************************/
 int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 {
-    int result;
+    int error;
 
-#ifdef _WIN32
-	DWORD temp;
-
-	if (tx) {
-		result = DeviceIoControl(h, (DWORD)FSCC_PURGE_TX,
-			                     NULL, 0,
-								 NULL, 0,
-								 &temp, NULL);
-
-		if (result == FALSE)
-				return GetLastError();
-	}
-
-	if (rx) {
-		result = DeviceIoControl(h, (DWORD)FSCC_PURGE_RX,
-			                     NULL, 0,
-								 NULL, 0,
-								 &temp, NULL);
-
-		if (result == FALSE) {
-				int e = GetLastError();
-
-				switch (e) {
-				case ERROR_INVALID_PARAMETER:
-						return ERROR_TIMEOUT;
-
-				default:
-						return e;
-				}
-		}
-	}
-#else
     if (tx) {
-        result = ioctl(h, FSCC_PURGE_TX);
+        error = ioctl(h, FSCC_PURGE_TX);
 
-        if (result == -1)
-            return errno;
+        if (error)
+            return error;
     }
 
     if (rx) {
-        result = ioctl(h, FSCC_PURGE_RX);
+        error = ioctl(h, FSCC_PURGE_RX);
 
-        if (result == -1)
-            return errno;
+        if (error)
+            return error;
     }
-#endif
 
     return 0;
 }
