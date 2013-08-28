@@ -742,14 +742,14 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
     int error;
 
     if (tx) {
-        error = ioctl(h, FSCC_PURGE_TX);
+        error = ioctl_action(h, FSCC_PURGE_TX);
 
         if (error)
             return error;
     }
 
     if (rx) {
-        error = ioctl(h, FSCC_PURGE_RX);
+        error = ioctl_action(h, FSCC_PURGE_RX);
 
         if (error)
             return error;
