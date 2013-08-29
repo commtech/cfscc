@@ -10,8 +10,17 @@ int main(void)
 	
 	fscc_connect(0, FALSE, &h);
 	
-	/*! [Get memory cap] */	
+	/*! [Set memory cap] */	
+	/* Specifiy our desired values */
+	m.input = 1000000; /* 1 MB */
+	m.output = 2000000; /* 2 MB */
+	
 	/* Set the memory cap values */
+	fscc_set_memory_cap(h, &m);
+	/*! [Set memory cap] */
+	
+	/*! [Get memory cap] */	
+	/* Get the memory cap values */
 	fscc_get_memory_cap(h, &m);
 	/*! [Get memory cap] */
 	

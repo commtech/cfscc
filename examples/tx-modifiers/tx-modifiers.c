@@ -3,6 +3,10 @@
 int main(void)
 {
 	HANDLE h;
+	/*! [Setup variables] */
+	/* Declare our modifiers variable */
+	unsigned modifiers;
+	/*! [Setup variables] */
 	
 	fscc_connect(0, FALSE, &h);
 
@@ -15,6 +19,11 @@ int main(void)
 	/* Disable modifiers */
 	fscc_set_tx_modifiers(h, XF);
 	/*! [Set XF] */
+
+	/*! [Get modifiers] */
+    /* Get modifiers */
+	fscc_get_tx_modifiers(h, &modifiers);
+	/*! [Get modifiers] */
 	
 	fscc_disconnect(h);
 	
