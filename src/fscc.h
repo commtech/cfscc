@@ -176,31 +176,37 @@ typedef HANDLE fscc_handle;
 typedef int fscc_handle;
 #endif
 
-__declspec(dllexport) int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h);
-__declspec(dllexport) int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers);
-__declspec(dllexport) int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers);
-__declspec(dllexport) int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap);
-__declspec(dllexport) int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap);
-__declspec(dllexport) int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs);
-__declspec(dllexport) int fscc_get_registers(fscc_handle h, struct fscc_registers *regs);
-__declspec(dllexport) int fscc_get_append_status(fscc_handle h, unsigned *status);
-__declspec(dllexport) int fscc_enable_append_status(fscc_handle fd);
-__declspec(dllexport) int fscc_disable_append_status(fscc_handle h);
-__declspec(dllexport) int fscc_get_append_timestamp(fscc_handle h, unsigned *status);
-__declspec(dllexport) int fscc_enable_append_timestamp(fscc_handle h);
-__declspec(dllexport) int fscc_disable_append_timestamp(fscc_handle h);
-__declspec(dllexport) int fscc_get_ignore_timeout(fscc_handle h, unsigned *status);
-__declspec(dllexport) int fscc_enable_ignore_timeout(fscc_handle h);
-__declspec(dllexport) int fscc_disable_ignore_timeout(fscc_handle h);
-__declspec(dllexport) int fscc_get_rx_multiple(fscc_handle h, unsigned *status);
-__declspec(dllexport) int fscc_enable_rx_multiple(fscc_handle h);
-__declspec(dllexport) int fscc_disable_rx_multiple(fscc_handle h);
-__declspec(dllexport) int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
-__declspec(dllexport) int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
-__declspec(dllexport) int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
-__declspec(dllexport) int fscc_read_with_timeout(HANDLE h, char *buf, unsigned size, unsigned *bytes_read, unsigned timeout);
-__declspec(dllexport) int fscc_disconnect(fscc_handle h);
-__declspec(dllexport) int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm);
+#ifdef _WIN32
+#define DLL_EXPORT __declspec(dllexport)
+#else
+#define DLL_EXPORT
+#endif
+
+DLL_EXPORT int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h);
+DLL_EXPORT int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers);
+DLL_EXPORT int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers);
+DLL_EXPORT int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap);
+DLL_EXPORT int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap);
+DLL_EXPORT int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs);
+DLL_EXPORT int fscc_get_registers(fscc_handle h, struct fscc_registers *regs);
+DLL_EXPORT int fscc_get_append_status(fscc_handle h, unsigned *status);
+DLL_EXPORT int fscc_enable_append_status(fscc_handle fd);
+DLL_EXPORT int fscc_disable_append_status(fscc_handle h);
+DLL_EXPORT int fscc_get_append_timestamp(fscc_handle h, unsigned *status);
+DLL_EXPORT int fscc_enable_append_timestamp(fscc_handle h);
+DLL_EXPORT int fscc_disable_append_timestamp(fscc_handle h);
+DLL_EXPORT int fscc_get_ignore_timeout(fscc_handle h, unsigned *status);
+DLL_EXPORT int fscc_enable_ignore_timeout(fscc_handle h);
+DLL_EXPORT int fscc_disable_ignore_timeout(fscc_handle h);
+DLL_EXPORT int fscc_get_rx_multiple(fscc_handle h, unsigned *status);
+DLL_EXPORT int fscc_enable_rx_multiple(fscc_handle h);
+DLL_EXPORT int fscc_disable_rx_multiple(fscc_handle h);
+DLL_EXPORT int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
+DLL_EXPORT int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
+DLL_EXPORT int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
+DLL_EXPORT int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, unsigned timeout);
+DLL_EXPORT int fscc_disconnect(fscc_handle h);
+DLL_EXPORT int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm);
 
 #ifdef __cplusplus
 }

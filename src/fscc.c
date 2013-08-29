@@ -896,7 +896,7 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
 
 */
 /******************************************************************************/
-int fscc_read_with_timeout(HANDLE h, char *buf, unsigned size,
+int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
                            unsigned *bytes_read, unsigned timeout)
 {
 #ifdef _WIN32
@@ -952,13 +952,15 @@ int fscc_read_with_timeout(HANDLE h, char *buf, unsigned size,
 
     CloseHandle(o.hEvent);
 
-    return ERROR_SUCCESS;
+    return 0;
 #else
     UNUSED(h);
     UNUSED(buf);
     UNUSED(size);
     UNUSED(bytes_read);
     UNUSED(timeout);
+
+    return 0;
 #endif
 }
 
