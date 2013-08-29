@@ -7,10 +7,10 @@ You can download a pre-built driver package that includes the C library directly
 [website](http://www.commtech-fastcom.com/CommtechSoftware.html).
 
 Or, you can download the latest library from 
-[Github](https://github.com/commtech/cfscc/releases)
+[Github](https://github.com/commtech/cfscc/releases).
 
 
-### Programming Your Card
+### Using the API
 
 ##### Quick Start Guide
 There is documentation for each specific function listed below, but lets get started
@@ -113,6 +113,7 @@ fscc_get_registers(h, &registers);
 A complete example of how to do this can be found in the file
 [`examples\registers.c`](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c).
 
+
 ##### fscc_set_clock_frequency
 _PPM (Parts Per Million) has been deprecated and will be removed in 
 a future release. This value will be ignored in the mean time._
@@ -123,6 +124,10 @@ a future release. This value will be ignored in the mean time._
 
 fscc_set_clock_frequency(h, 18432000, 2);
 ```
+
+A complete example of how to do this can be found in the file
+[`examples\clock-frequency.c`](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c).
+
 
 ##### fscc_get_append_status
 ```c
@@ -137,8 +142,9 @@ fscc_disable_append_status(h);
 fscc_get_append_status(h, &status);
 ```
 
-A complete example of how to do this can be found in the files
+A complete example of how to do this can be found in the file
 [`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status.c)
+
 
 ##### fscc_set_memory_cap
 ##### fscc_get_memory_cap
@@ -155,6 +161,10 @@ fscc_set_memory_cap(h, &memcap);
 fscc_get_memory_cap(h, &memcap);
 ```
 
+A complete example of how to do this can be found in the file
+[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap.c)
+
+
 ##### fscc_set_tx_modifiers
 ```
 #include <fscc.h>
@@ -166,9 +176,11 @@ fscc_set_tx_modifiers(h, XF | XREP);
 fscc_get_tx_modifiers(h, &modifiers);
 ```
 
-##### Ignore Timeout
+A complete example of how to do this can be found in the file
+[`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers.c)
 
-###### C Library
+
+##### Ignore Timeout
 ```c
 #include <fscc.h>
 ...
@@ -180,6 +192,10 @@ fscc_disable_ignore_timeout(h);
 
 fscc_get_ignore_timeout(h, &status);
 ```
+
+A complete example of how to do this can be found in the file
+[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout.c)
+
 
 ##### Retrieving Multiple Frames At Once
 ```c
@@ -194,6 +210,9 @@ fscc_disable_rx_multiple(h);
 fscc_get_rx_multiple(h, &status);
 ```
 
+A complete example of how to do this can be found in the file
+[`examples\rx-multiple.c`](https://github.com/commtech/cfscc/blob/master/examples/rx-multiple.c)
+
 
 ##### Purging Data
 ```c
@@ -202,6 +221,9 @@ fscc_get_rx_multiple(h, &status);
 
 fscc_purge(h, TRUE, TRUE);
 ```
+
+A complete example of how to do this can be found in the file
+[`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge.c)
 
 
 ##### Sending/Receiving Data
