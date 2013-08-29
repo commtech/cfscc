@@ -883,6 +883,85 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
 #endif
 }
 
+
+/******************************************************************************/
+/*!
+
+  \note
+    Due to supporting Windows XP we have to use CancelIo() instead of
+    CancelIoEx(). As a biproduct if there is a WAIT_TIMEOUT both pending
+    transmit and receive IO will be cancelled instead of just receiving. If you
+    are using Vista or newer you can change this to use CancelIoEx and you will
+    only cancel the receiving IO.
+
+*/
+/******************************************************************************/
+int fscc_read_with_timeout(HANDLE h, char *buf, unsigned size,
+                           unsigned *bytes_read, unsigned timeout)
+{
+#ifdef _WIN32
+    OVERLAPPED o;
+    BOOL result;
+
+    memset(&o, 0, sizeof(o));
+
+    o.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+
+    if (o.hEvent == NULL)
+        return GetLastError();
+
+    result = ReadFile(h, buf, size, (DWORD*)bytes_read, &o);
+
+    if (result == FALSE) {
+        DWORD status;
+        int e;
+
+        /* There was an actual error instead of a pending read */
+        if ((e = GetLastError()) != ERROR_IO_PENDING) {
+            CloseHandle(o.hEvent);
+            return e;
+        }
+
+        do {
+            status = WaitForSingleObject(o.hEvent, timeout);
+
+            switch (status) {
+            case WAIT_TIMEOUT:
+                    *bytes_read = 0;
+                    /* Switch to CancelIoEx if using Vista or higher and prefer the
+                       way CancelIoEx operates. */
+                    /* CancelIoEx(h, &o); */
+                    CancelIo(h);
+                    CloseHandle(o.hEvent);
+                    return ERROR_SUCCESS;
+
+            case WAIT_ABANDONED:
+                    CloseHandle(o.hEvent);
+                    return 1; //TODO: READFILE_ABANDONED;
+
+            case WAIT_FAILED:
+                    e = GetLastError();
+                    CloseHandle(o.hEvent);
+                    return e;
+            }
+        }
+        while (status != WAIT_OBJECT_0);
+
+        GetOverlappedResult(h, &o, (DWORD *)bytes_read, TRUE);
+    }
+
+    CloseHandle(o.hEvent);
+
+    return ERROR_SUCCESS;
+#else
+    UNUSED(h);
+    UNUSED(buf);
+    UNUSED(size);
+    UNUSED(bytes_read);
+    UNUSED(timeout);
+#endif
+}
+
 /******************************************************************************/
 /*!
 

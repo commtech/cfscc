@@ -198,6 +198,7 @@ __declspec(dllexport) int fscc_disable_rx_multiple(fscc_handle h);
 __declspec(dllexport) int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
 __declspec(dllexport) int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
 __declspec(dllexport) int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
+__declspec(dllexport) int fscc_read_with_timeout(HANDLE h, char *buf, unsigned size, unsigned *bytes_read, unsigned timeout);
 __declspec(dllexport) int fscc_disconnect(fscc_handle h);
 __declspec(dllexport) int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm);
 
