@@ -39,9 +39,9 @@ int translate_error(int e)
 {
 #ifdef _WIN32
     switch (e) {
-        case STATUS_IO_TIMEOUT:
+        case ERROR_SEM_TIMEOUT:
             return FSCC_TIMEOUT;
-        case STATUS_BUFFER_TOO_SMALL:
+        case ERROR_INSUFFICIENT_BUFFER:
             return FSCC_BUFFER_TOO_SMALL;
     default:
         return e;
