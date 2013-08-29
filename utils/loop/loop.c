@@ -90,13 +90,33 @@ int main(int argc, char *argv[])
 int init(HANDLE h)
 {
 	struct fscc_registers r;
+	struct fscc_memory_cap m;
 	int e = 0;
 
-	fprintf(stdout, "Restoring to default settings.\n");
+	m.input = 1000000;
+	m.output = 1000000;
+
+	e = fscc_set_memory_cap(h, &m);
+	if (e != 0) {
+		fprintf(stderr, "fscc_set_memory_cap failed with %d\n", e);
+		return EXIT_FAILURE;
+	}
+
+	e = fscc_disable_ignore_timeout(h);
+	if (e != 0) {
+		fprintf(stderr, "fscc_disable_ignore_timeout failed with %d\n", e);
+		return EXIT_FAILURE;
+	}
 
 	e = fscc_disable_append_status(h);
 	if (e != 0) {
 		fprintf(stderr, "fscc_disable_append_status failed with %d\n", e);
+		return EXIT_FAILURE;
+	}
+
+	e = fscc_disable_append_timestamp(h);
+	if (e != 0) {
+		fprintf(stderr, "fscc_disable_append_timestamp failed with %d\n", e);
 		return EXIT_FAILURE;
 	}
 	
@@ -137,7 +157,7 @@ int init(HANDLE h)
 		return EXIT_FAILURE;
 	}
 
-	e = fscc_set_clock_frequency(h, 1000000, 2);
+	e = fscc_set_clock_frequency(h, 18432000, 2);
 	if (e != 0) {
 		fprintf(stderr, "fscc_set_clock_frequency failed with %d\n", e);
 		return EXIT_FAILURE;
