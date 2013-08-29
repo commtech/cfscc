@@ -822,14 +822,14 @@ int fscc_write(fscc_handle h, char *buf, unsigned size,
 #ifdef _WIN32
 	result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
 
-	return (result == TRUE) ? 0 : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(o);
 
     result = write(h, buf, size);
 
     if (result == -1)
-        return errno;
+        return translate_error(errno);
 
     *bytes_written = result;
 
@@ -868,14 +868,14 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
 
 	result = ReadFile(h, buf, size, (DWORD*)bytes_read, o);
 
-	return (result == TRUE) ? 0 : GetLastError();
+	return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(o);
 
     result = read(h, buf, size);
 
     if (result == -1)
-        return errno;
+        return translate_error(errno);
 
     *bytes_read = result;
 
