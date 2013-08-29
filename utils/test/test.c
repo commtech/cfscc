@@ -82,13 +82,13 @@ int init(HANDLE h)
 
 	e = fscc_set_memory_cap(h, &m);
 	if (e != 0) {
-		fprintf(stderr, "fscc_disable_append_status failed with %d\n", e);
+		fprintf(stderr, "fscc_set_memory_cap failed with %d\n", e);
 		return EXIT_FAILURE;
 	}
 
 	e = fscc_disable_ignore_timeout(h);
 	if (e != 0) {
-		fprintf(stderr, "fscc_disable_append_status failed with %d\n", e);
+		fprintf(stderr, "fscc_disable_ignore_timeout failed with %d\n", e);
 		return EXIT_FAILURE;
 	}
 
