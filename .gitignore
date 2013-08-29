@@ -8,3 +8,5 @@
 *.exp
 *.exe
 *.hex
+*.gch
+*.out
