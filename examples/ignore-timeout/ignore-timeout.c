@@ -1,14 +1,15 @@
+#include <stdlib.h>
 #include <fscc.h>
 
 int main(void)
 {
-	HANDLE h;
+	fscc_handle h;
 	/*! [Setup variables] */
 	/* Declare our ignore timeout variable */
 	unsigned ignore_timeout;
 	/*! [Setup variables] */
-	
-	fscc_connect(0, FALSE, &h);
+
+	fscc_connect(0, 0, &h);
 
 	/*! [Get ignore timeout] */
     /* Get ignore timeout value */
@@ -22,8 +23,8 @@ int main(void)
 	/*! [Disable ignore timeout] */
 	fscc_disable_ignore_timeout(h);
 	/*! [Disable ignore timeout] */
-	
+
 	fscc_disconnect(h);
-	
+
 	return EXIT_SUCCESS;
 }

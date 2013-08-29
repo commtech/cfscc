@@ -1,17 +1,17 @@
 #include <stdio.h>
-
+#include <stdlib.h>
 #include <fscc.h>
 
 int main(void)
 {
-	HANDLE h;
+	fscc_handle h;
 	int e = 0;
 	char odata[] = "Hello world!";
 	char idata[20] = {0};
 	unsigned tmp;
 
-	/* Open FSCC0 in a blockin IO mode */
-	e = fscc_connect(3, FALSE, &h);
+	/* Open port 0 in a blocking IO mode */
+	e = fscc_connect(0, 0, &h);
 	if (e != 0) {
 		fprintf(stderr, "fscc_connect failed with %d\n", e);
 		return EXIT_FAILURE;
@@ -23,7 +23,7 @@ int main(void)
 	/* Read the data back in (with our loopback connector) */
 	fscc_read(h, idata, sizeof(idata), &tmp, NULL);
 
-	fprintf(stdout, idata);
+	fprintf(stdout, "%s\n", idata);
 
 	fscc_disconnect(h);
 

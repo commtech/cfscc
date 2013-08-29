@@ -1,14 +1,15 @@
+#include <stdlib.h>
 #include <fscc.h>
 
 int main(void)
 {
-	HANDLE h;
+	fscc_handle h;
 	/*! [Setup variables] */
 	/* Declare our append status variable */
 	unsigned append_status;
 	/*! [Setup variables] */
-	
-	fscc_connect(0, FALSE, &h);
+
+	fscc_connect(0, 0, &h);
 
 	/*! [Get append status] */
     /* Get append status value */
@@ -22,8 +23,8 @@ int main(void)
 	/*! [Disable append status] */
 	fscc_disable_append_status(h);
 	/*! [Disable append status] */
-	
+
 	fscc_disconnect(h);
-	
+
 	return EXIT_SUCCESS;
 }
