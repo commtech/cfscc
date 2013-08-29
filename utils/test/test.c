@@ -97,6 +97,12 @@ int init(HANDLE h)
 		fprintf(stderr, "fscc_disable_append_status failed with %d\n", e);
 		return EXIT_FAILURE;
 	}
+
+	e = fscc_disable_append_timestamp(h);
+	if (e != 0) {
+		fprintf(stderr, "fscc_disable_append_timestamp failed with %d\n", e);
+		return EXIT_FAILURE;
+	}
 	
 	e = fscc_set_tx_modifiers(h, XF);
 	if (e != 0) {
