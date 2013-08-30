@@ -4,10 +4,8 @@ This README file is best viewed [online](http://github.com/commtech/cfscc/).
 ## Installing Library
 
 ##### Downloading Library
-You can download a pre-built driver package that includes the C library directly from our
-[website](http://www.commtech-fastcom.com/CommtechSoftware.html).
-
-Or, you can download the latest library version from
+- You can use the pre-built driver package that is included with the driver
+- Or, you can download the latest library version from
 [Github releases](https://github.com/commtech/cfscc/releases).
 
 
