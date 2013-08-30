@@ -1,6 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <fscc.h>
+#include <stdio.h> /* fprintf */
+#include <stdlib.h> /* EXIT_SUCCESS, EXIT_FAILURE */
+#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
+                     fscc_write, fscc_read */
 
 int main(void)
 {
@@ -17,7 +18,7 @@ int main(void)
 		return EXIT_FAILURE;
 	}
 
-	/* Send our "Hello world!" text */
+	/* Send "Hello world!" text */
 	fscc_write(h, odata, sizeof(odata), &tmp, NULL);
 
 	/* Read the data back in (with our loopback connector) */
