@@ -5,6 +5,12 @@
 - TXT - Transmit on timer
 - TXEXT - Transmit on external signal
 
+###### Driver Support
+| Code           | Version
+| -------------- | --------
+| `fscc-windows` | `v2.0.0` 
+| `fscc-linux`   | `v2.0.0` 
+
 ## Get
 ```c
 int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers)
@@ -26,6 +32,11 @@ unsigned modifiers;
 fscc_get_tx_modifiers(h, &modifiers);
 ```
 
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
+
 
 ## Set
 ```c
@@ -45,6 +56,11 @@ int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers)
 
 fscc_set_tx_modifiers(h, XF | XREP);
 ```
+
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources
