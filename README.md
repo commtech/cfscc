@@ -76,6 +76,7 @@ You have now transmitted and received an HDLC frame!
 There are likely other configuration options you will need to set up for your 
 own program. All of these options are described on their respective documentation page.
 
+- [Connect](https://github.com/commtech/cfscc/blob/master/docs/connect.md)
 - [Append Status](https://github.com/commtech/cfscc/blob/master/docs/append-status.md)
 - [Append Timestamp](https://github.com/commtech/cfscc/blob/master/docs/append-timestamp.md)
 - [Clock Frequency](https://github.com/commtech/cfscc/blob/master/docs/clock-frequency.md)
@@ -85,6 +86,7 @@ own program. All of these options are described on their respective documentatio
 - [Purge](https://github.com/commtech/cfscc/blob/master/docs/purge.md)
 - [Registers](https://github.com/commtech/cfscc/blob/master/docs/registers.md)
 - [TX Modifiers](https://github.com/commtech/cfscc/blob/master/docs/tx-modifiers.md)
+- [Disconnect](https://github.com/commtech/cfscc/blob/master/docs/disconnect.md)
 
 
 ## Dependencies
