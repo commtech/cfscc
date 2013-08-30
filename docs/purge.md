@@ -1,21 +1,53 @@
-Purge
-=====
-
+# Purge
 Between the hardware FIFO and the driver's software buffers there are multiple places data could 
 be stored, excluding your application code. If you ever need to clear this data and start fresh, 
 there are a couple of methods you can use.
 
-Execute
--------
+## Execute
 
+```c
+fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
+```
+
+| Parameter | Type           | Description
+| --------- | -------------- | -----------------------
+| `h`       | `fscc_handle`  | The handle to your port
+| `tx`      | `unsigned int` | Whether to purge the transmit data
+| `rx`      | `unsigned int` | Whether to purge the eceive
+
+
+###### Errors
+In addition to your standard platform errors, there is FSCC specific error(s) you might encounter.
+
+| Error          | Cause
+| -------------- | ------------------------------------------------------------------
+| `FSCC_TIMEOUT` | You are executing a command that requires a transmit clock present
+
+
+###### Examples
+Purge both the transmit and receive data.
 ```c
 #include <fscc.h>
 ...
 
-fscc_purge(h, TRUE, TRUE);
+fscc_purge(h, 1, 1);
 ```
 
-At this point both the transmit and receive data would be purged.
+Purge only the transmit data.
+```c
+#include <fscc.h>
+...
+
+fscc_purge(h, 1, 0);
+```
+
+Purge only the receive data.
+```c
+#include <fscc.h>
+...
+
+fscc_purge(h, 0, 1);
+```
 
 A complete example of how to do this can be found in the file
 [`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
