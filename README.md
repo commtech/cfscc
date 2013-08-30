@@ -19,7 +19,7 @@ _This tutorial has already been set up for you at_
 First, drop `cfscc.dll` and `cfscc.lib` into a test directory. Now that those files are 
 copied over, create a new C file (named tutorial.c) with the following code.
 
-```
+```c
 #include <stdio.h> /* fprintf */
 #include <stdlib.h> /* EXIT_SUCCESS, EXIT_FAILURE */
 #include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
