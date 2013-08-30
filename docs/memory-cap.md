@@ -15,10 +15,10 @@ Get
 struct fscc_memory_cap memcap;
 
 fscc_get_memory_cap(h, &memcap);
-
-printf("input = %i bytes\n", memcap.input)
-printf("output = %i bytes\n", memcap.output)
 ```
+
+At this point `memcap.input` and `memcap.output` would be set to their respective
+values.
 
 A complete example of how to do this can be found in the file
 [`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap.c)
