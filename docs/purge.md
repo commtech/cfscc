@@ -4,7 +4,6 @@ be stored, excluding your application code. If you ever need to clear this data 
 there are a couple of methods you can use.
 
 ## Execute
-
 ```c
 fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 ```
