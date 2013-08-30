@@ -49,5 +49,6 @@ Purge only the receive data.
 fscc_purge(h, 0, 1);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
+###### Additional Resources
+- Complete example: [`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
+- Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
