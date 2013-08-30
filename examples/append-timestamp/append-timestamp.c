@@ -5,11 +5,11 @@
 int main(void)
 {
 	fscc_handle h;
-	unsigned append_timestamp;
+	unsigned status;
 
 	fscc_connect(0, 0, &h);
 
-	fscc_get_append_timestamp(h, &append_timestamp);
+	fscc_get_append_timestamp(h, &status);
 
 	fscc_enable_append_timestamp(h);
 	fscc_disable_append_timestamp(h);

@@ -5,11 +5,11 @@
 int main(void)
 {
 	fscc_handle h;
-	unsigned ignore_timeout;
+	unsigned status;
 
 	fscc_connect(0, 0, &h);
 
-	fscc_get_ignore_timeout(h, &ignore_timeout);
+	fscc_get_ignore_timeout(h, &status);
 
 	fscc_enable_ignore_timeout(h);
 	fscc_disable_ignore_timeout(h);

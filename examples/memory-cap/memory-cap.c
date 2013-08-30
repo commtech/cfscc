@@ -13,7 +13,7 @@ int main(void)
 	m.output = 2000000; /* 2 MB */
 
 	fscc_set_memory_cap(h, &m);
-	
+
 	fscc_get_memory_cap(h, &m);
 
 	fscc_disconnect(h);

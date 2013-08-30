@@ -5,11 +5,11 @@
 int main(void)
 {
 	fscc_handle h;
-	unsigned append_status;
+	unsigned status;
 
 	fscc_connect(0, 0, &h);
 
-	fscc_get_append_status(h, &append_status);
+	fscc_get_append_status(h, &status);
 
 	fscc_enable_append_status(h);
 	fscc_disable_append_status(h);
