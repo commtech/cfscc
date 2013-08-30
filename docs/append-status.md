@@ -7,6 +7,13 @@ The FSCC reports this data to you by appending two additional bytes
 to each frame you read from the card, if you opt-in to see this data. There are
 a few methods of enabling this additional data.
 
+###### Driver Support
+| Code           | Version
+| -------------- | --------
+| `fscc-windows` | `v2.0.0` 
+| `fscc-linux`   | `v2.0.0` 
+
+
 ## Get
 ```c
 int fscc_get_append_status(fscc_handle h, unsigned *status)
@@ -28,6 +35,11 @@ unsigned status;
 fscc_get_append_status(h, &status);
 ```
 
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
+
 
 ## Enable
 ```c
@@ -46,6 +58,11 @@ int fscc_enable_append_status(fscc_handle h)
 
 fscc_enable_append_status(h);
 ```
+
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
 
 
 Disable
@@ -66,6 +83,11 @@ int fscc_disable_append_status(fscc_handle h)
 
 fscc_disable_append_status(h);
 ```
+
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources
