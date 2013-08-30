@@ -21,6 +21,13 @@ You should purge the data stream after changing the registers.
 Settings like CCR0 will require being purged for the changes to take 
 effect.
 
+###### Driver Support
+| Code           | Version
+| -------------- | --------
+| `fscc-windows` | `v2.0.0` 
+| `fscc-linux`   | `v2.0.0` 
+
+
 ## Set
 ```c
 int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
@@ -46,6 +53,11 @@ registers.BGR = 10;
 
 fscc_set_registers(h, &registers);
 ```
+
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
 
 
 ## Get
@@ -76,6 +88,11 @@ fscc_get_registers(h, &registers);
 
 At this point `regs.CCR0` and `regs.BGR` would be set to their respective
 values.
+
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources
