@@ -65,8 +65,7 @@ fscc_enable_append_status(h);
 | `cfscc`        | `v1.0.0`
 
 
-Disable
--------
+## Disable
 ```c
 int fscc_disable_append_status(fscc_handle h)
 ```
