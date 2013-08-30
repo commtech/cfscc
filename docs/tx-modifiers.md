@@ -19,7 +19,7 @@ fscc_get_tx_modifiers(h, &modifiers);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers.c)
+[`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers/tx-modifiers.c)
 
 
 Set
@@ -33,4 +33,4 @@ fscc_set_tx_modifiers(h, XF | XREP);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers.c)
+[`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers/tx-modifiers.c)
