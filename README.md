@@ -91,6 +91,10 @@ own program. All of these options are described on their respective documentatio
 TODO
 
 
+## API Compatibility
+We follow [Semantic Versioning](http://semver.org/) when creating releases.
+
+
 ## License
 
 Copyright (C) 2013 [Commtech, Inc.](http://commtech-fastcom.com)
