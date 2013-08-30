@@ -13,7 +13,7 @@ fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 | --------- | -------------- | -----------------------
 | `h`       | `fscc_handle`  | The handle to your port
 | `tx`      | `unsigned int` | Whether to purge the transmit data
-| `rx`      | `unsigned int` | Whether to purge the eceive
+| `rx`      | `unsigned int` | Whether to purge the receive data
 
 
 ###### Errors
