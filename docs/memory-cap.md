@@ -11,6 +11,20 @@ option for setting it's input and output memory cap.
 | `fscc-linux`   | `v2.0.0` 
 
 
+## Macros
+```c
+FSCC_MEMORY_CAP_INIT(memcap)
+```
+
+| Parameter   | Type                       | Description
+| ----------- | -------------------------- | --------------------------------------
+| `memcap`    | `struct fscc_memory_cap *` | The memory cap structure to initialize
+
+The `FSCC_MEMORY_CAP_INIT` macro should be called each time you use the 
+`struct fscc_memory_cap` structure. An initialized structure will allow you to 
+only set/receive the memory cap you need.
+
+
 ## Get
 ```c
 int fscc_get_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
