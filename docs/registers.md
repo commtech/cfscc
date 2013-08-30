@@ -1,5 +1,4 @@
-Registers
-=========
+# Registers
 
 The FSCC driver is a swiss army knife of sorts with communication. It can
 handle many different situations, if configured correctly. Typically to
@@ -22,9 +21,18 @@ You should purge the data stream after changing the registers.
 Settings like CCR0 will require being purged for the changes to take 
 effect.
 
-Set
----
+## Set
+```c
+int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
+```
 
+| Parameter | Type                      | Description
+| --------- | ------------------------- | -----------------------
+| `h`       | `fscc_handle`             | The handle to your port
+| `regs`    | `struct fscc_registers *` | The registers you would like to set
+
+
+###### Examples
 ```
 #include <fscc.h>
 ...
@@ -39,13 +47,19 @@ registers.BGR = 10;
 fscc_set_registers(h, &registers);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\registers.c`](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c).
+
+## Get
+```c
+int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
+```
+
+| Parameter | Type                      | Description
+| --------- | ------------------------- | -----------------------
+| `h`       | `fscc_handle`             | The handle to your port
+| `regs`    | `struct fscc_registers *` | The register values you would like to view
 
 
-Get
-------
-
+###### Examples
 ```
 #include <fscc.h>
 ...
@@ -63,5 +77,7 @@ fscc_get_registers(h, &registers);
 At this point `regs.CCR0` and `regs.BGR` would be set to their respective
 values.
 
-A complete example of how to do this can be found in the file
-[`examples\registers.c`](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c).
+
+### Additional Resources
+- Complete example: [`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
+- Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
