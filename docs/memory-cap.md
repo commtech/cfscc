@@ -1,18 +1,34 @@
-Memory Cap
-=============
-
+# Memory Cap
 If your system has limited memory available, there are safety checks in place to prevent spurious incoming data from overrunning your system. Each port has an option for setting it's input and output memory cap.
 
 There are multiple methods of setting this value.
 
-Get
----
+###### Driver Support
+| Code           | Version
+| -------------- | --------
+| `fscc-windows` | `v2.0.0` 
+| `fscc-linux`   | `v2.0.0` 
 
+
+## Get
+```c
+int fscc_get_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
+```
+
+| Parameter | Type                             | Description
+| --------- | -------------------------------- | -----------------------
+| `h`       | `fscc_handle`                    | The handle to your port
+| `memcap`  | `const struct fscc_memory_cap *` | The current `memory cap` values
+
+
+###### Examples
 ```
 #include <fscc.h>
 ...
 
 struct fscc_memory_cap memcap;
+
+FSCC_MEMORY_CAP_INIT(memcap);
 
 fscc_get_memory_cap(h, &memcap);
 ```
@@ -20,18 +36,31 @@ fscc_get_memory_cap(h, &memcap);
 At this point `memcap.input` and `memcap.output` would be set to their respective
 values.
 
-A complete example of how to do this can be found in the file
-[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
 
 
-Set
-------
+## Set
+```c
+int fscc_set_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
+```
 
+| Parameter | Type                       | Description
+| --------- | -------------------------- | -----------------------
+| `h`       | `fscc_handle`              | The handle to your port
+| `memcap`  | `struct fscc_memory_cap *` | The new `memory cap` value(s)
+
+
+###### Examples
 ```
 #include <fscc.h>
 ...
 
 struct fscc_memory_cap memcap;
+
+FSCC_MEMORY_CAP_INIT(memcap);
 
 memcap.input = 1000000; /* 1 MB */
 memcap.output = 2000000; /* 2 MB */
@@ -39,5 +68,12 @@ memcap.output = 2000000; /* 2 MB */
 fscc_set_memory_cap(h, &memcap);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
+
+
+### Additional Resources
+- Complete example: [`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
+- Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
