@@ -78,13 +78,13 @@ You have now transmitted and received an HDLC frame!
 There are likely other configuration options you will need to set up for your 
 own program. All of these options are described on their respective documentation page.
 
-- [Append Status](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
-- [Clock Frequency](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c)
-- [Ignore Timeout](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
-- [Memory Cap](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
-- [Purge](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
-- [Registers](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c)
-- [TX Modifiers](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers/tx-modifiers.c)
+- [Append Status](https://github.com/commtech/cfscc/blob/master/docs/append-status.md)
+- [Clock Frequency](https://github.com/commtech/cfscc/blob/master/docs/clock-frequency.md)
+- [Ignore Timeout](https://github.com/commtech/cfscc/blob/master/docs/ignore-timeout.md)
+- [Memory Cap](https://github.com/commtech/cfscc/blob/master/docs/memory-cap.md)
+- [Purge](https://github.com/commtech/cfscc/blob/master/docs/purge.md)
+- [Registers](https://github.com/commtech/cfscc/blob/master/docs/registers.md)
+- [TX Modifiers](https://github.com/commtech/cfscc/blob/master/docs/tx-modifiers.md)
 
 
 ## Dependencies
