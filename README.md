@@ -1,5 +1,5 @@
-# cfscc
-This README file is best viewed on the [GitHub page](http://github.com/commtech/cfscc/).
+# FSCC C Library (cfscc)
+This README file is best viewed [online](http://github.com/commtech/cfscc/).
 
 ## Installing Library
 
