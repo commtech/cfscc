@@ -1,9 +1,17 @@
-Ignore Timeout
-=============
+# Ignore Timeout
 
-Get
----
+## Get
+```c
+int fscc_get_ignore_timeout(fscc_handle h, unsigned *status)
+```
 
+| Parameter | Type             | Description
+| --------- | ---------------- | -----------------------
+| `h`       | `fscc_handle`    | The handle to your port
+| `status`  | `unsigned int *` | The current `ignore timeout` value
+
+
+###### Examples
 ```c
 #include <fscc.h>
 ...
@@ -13,13 +21,18 @@ unsigned status;
 fscc_get_ignore_timeout(h, &status);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
+
+## Enable
+```c
+int fscc_enable_ignore_timeout(fscc_handle h)
+```
+
+| Parameter | Type             | Description
+| --------- | ---------------- | -----------------------
+| `h`       | `fscc_handle`    | The handle to your port
 
 
-Enable
-------
-
+###### Examples
 ```c
 #include <fscc.h>
 ...
@@ -27,13 +40,18 @@ Enable
 fscc_enable_ignore_timeout(h);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
+
+## Disable
+```c
+int fscc_disable_ignore_timeout(fscc_handle h)
+```
+
+| Parameter | Type             | Description
+| --------- | ---------------- | -----------------------
+| `h`       | `fscc_handle`    | The handle to your port
 
 
-Disable
--------
-
+###### Examples
 ```c
 #include <fscc.h>
 ...
@@ -41,5 +59,7 @@ Disable
 fscc_disable_ignore_timeout(h);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
+
+### Additional Resources
+- Complete example: [`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
+- Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
