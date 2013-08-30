@@ -1,29 +1,20 @@
-#include <stdlib.h>
-#include <fscc.h>
+#include <stdlib.h> /* EXIT_SUCCESS */
+#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
+                     fscc_{get, set}_memory_cap, struct fscc_memory_cap */
 
 int main(void)
 {
 	fscc_handle h;
-	/*! [Setup variables] */
-	/* Declare our memory cap variable */
 	struct fscc_memory_cap m;
-	/*! [Setup variables] */
 
 	fscc_connect(0, 0, &h);
 
-	/*! [Set memory cap] */
-	/* Specifiy our desired values */
 	m.input = 1000000; /* 1 MB */
 	m.output = 2000000; /* 2 MB */
 
-	/* Set the memory cap values */
 	fscc_set_memory_cap(h, &m);
-	/*! [Set memory cap] */
-
-	/*! [Get memory cap] */
-	/* Get the memory cap values */
+	
 	fscc_get_memory_cap(h, &m);
-	/*! [Get memory cap] */
 
 	fscc_disconnect(h);
 
