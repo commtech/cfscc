@@ -1,7 +1,8 @@
 # Memory Cap
-If your system has limited memory available, there are safety checks in place to prevent spurious incoming data from overrunning your system. Each port has an option for setting it's input and output memory cap.
+If your system has limited memory available, there are safety checks in place to 
+prevent spurious incoming data from overrunning your system. Each port has an 
+option for setting it's input and output memory cap.
 
-There are multiple methods of setting this value.
 
 ###### Driver Support
 | Code           | Version
