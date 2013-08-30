@@ -21,7 +21,7 @@ fscc_get_append_status(h, &status);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status.c)
+[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
 
 
 Enable
@@ -35,7 +35,7 @@ fscc_enable_append_status(h);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status.c)
+[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
 
 
 Disable
@@ -49,4 +49,4 @@ fscc_disable_append_status(h);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status.c)
+[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
