@@ -12,11 +12,10 @@ Execute
 #include <fscc.h>
 ...
 
-/* Purge both TX and RX data */
 fscc_purge(h, TRUE, TRUE);
 ```
 
 At this point both the transmit and receive data would be purged.
 
 A complete example of how to do this can be found in the file
-[`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge.c)
+[`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
