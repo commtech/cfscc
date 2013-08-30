@@ -217,31 +217,7 @@ int ioctl_getset_pointer(fscc_handle h, int ioctl_name, void *value,
 #endif
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Opens a handle to an FSCC port.
-
-  \param[in] port_num
-    the FSCC port number
-  \param[in] overlapped
-    whether you would like to use the port in overlapped mode
-  \param[out] h
-    user variable that the port's HANDLE will be assigned to
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \note
-    Opening a handle using this API will only give you access to the
-    synchronous functionality of the card. You will need to use the COM ports
-    if you would like to use the asynchronous functionality.
-
-*/
-/******************************************************************************/
-int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h)
+int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h)
 {
     char name[MAX_NAME_LENGTH];
 
@@ -605,21 +581,6 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
 #endif
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Closes the handle to an FSCC port.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if closing the port completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_disconnect(fscc_handle h)
 {
     int result;

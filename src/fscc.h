@@ -180,7 +180,7 @@ typedef int fscc_handle;
 #define DLL_EXPORT
 #endif
 
-DLL_EXPORT int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h);
+DLL_EXPORT int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h);
 DLL_EXPORT int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers);
 DLL_EXPORT int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers);
 DLL_EXPORT int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap);
