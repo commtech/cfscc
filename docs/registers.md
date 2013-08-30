@@ -28,13 +28,27 @@ effect.
 | `fscc-linux`   | `v2.0.0` 
 
 
+## Macros
+```c
+FSCC_REGISTERS_INIT(regs)
+```
+
+| Parameter | Type                      | Description
+| --------- | ------------------------- | -----------------------
+| `regs`    | `struct fscc_registers *` | The registers structure to initialize
+
+The `FSCC_REGISTERS_INIT` macro should be called each time you use the 
+`struct fscc_registers` structure. An initialized structure will allow you to 
+only set/receive the registers you need.
+
+
 ## Set
 ```c
 int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
 ```
 
 | Parameter | Type                      | Description
-| --------- | ------------------------- | -----------------------
+| --------- | ------------------------- | -----------------------------------
 | `h`       | `fscc_handle`             | The handle to your port
 | `regs`    | `struct fscc_registers *` | The registers you would like to set
 
