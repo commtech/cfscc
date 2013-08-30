@@ -1,17 +1,15 @@
-#include <stdlib.h>
-#include <fscc.h>
+#include <stdlib.h> /* EXIT_SUCCESS */
+#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
+                     FSCC_REGISTERS_INIT, FSCC_UPDATE_VALUE
+                     fscc_{get, set}_registers */
 
 int main(void)
 {
 	fscc_handle h;
-	/*! [Setup variables] */
-	/* Declare our registers variable */
 	struct fscc_registers r;
-	/*! [Setup variables] */
 
 	fscc_connect(0, 0, &h);
 
-	/*! [Set registers] */
 	/* Initialize our registers structure */
 	FSCC_REGISTERS_INIT(r);
 
@@ -21,9 +19,7 @@ int main(void)
 
 	/* Set the CCR0 and BGR register values */
 	fscc_set_registers(h, &r);
-	/*! [Set registers] */
 
-	/*! [Get registers] */
 	/* Initialize our registers structure */
 	FSCC_REGISTERS_INIT(r);
 
