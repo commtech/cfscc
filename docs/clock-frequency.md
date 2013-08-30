@@ -1,6 +1,4 @@
-Clock Frequency
-==============
-
+# Clock Frequency
 The FSCC device has a programmable clock that can be set anywhere from
 20 KHz to 200 MHz. However, this is not the full operational range of an
 FSCC port, only the range that the onboard clock can be set to.
@@ -14,18 +12,33 @@ the frequency generator to finish. If you run into this situation we
 recommend using a larger frequency and then dividing it down to your 
 desired baud rate using the BGR register.
 
-_PPM (Parts Per Million) has been deprecated and will be removed in 
-a future release. This value will be ignored in the mean time._
 
-Set
----
+## Set
+```c
+int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
+```
 
+| Parameter    | Type          | Description
+| ------------ | ------------- | -----------------------
+| `h`          | `fscc_handle` | The handle to your port
+| `frequency`  | `unsigned`    | The new clock frequency (hz)
+
+
+###### Examples
+Set the port's clock frequency to 18.432 MHz.
 ```c
 #include <fscc.h>
 ...
 
-fscc_set_clock_frequency(h, 18432000, 2);
+fscc_set_clock_frequency(h, 18432000);
 ```
 
-A complete example of how to do this can be found in the file
-[`examples\clock-frequency.c`](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c).
+###### Support
+| Code           | Version
+| -------------- | --------
+| `cfscc`        | `v1.0.0`
+
+
+### Additional Resources
+- Complete example: [`examples\clock-frequency.c`](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c)
+- Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
