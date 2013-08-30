@@ -10,11 +10,9 @@ Or, you can download the latest library from
 [Github](https://github.com/commtech/cfscc/releases).
 
 
-### Using the API
+### Quick Start Guide
 
-##### Quick Start Guide
-There is documentation for each specific function listed below, but lets get started
-with a quick programming example for fun.
+Lets get started with a quick programming example for fun.
 
 _This tutorial has already been set up for you at_ 
 [`examples/tutorial/`](https://github.com/commtech/cfscc/tree/master/examples/tutorial).
@@ -72,6 +70,9 @@ Hello world!
 ```
 
 You have now transmitted and received an HDLC frame! 
+
+
+### API Reference
 
 There are likely other configuration options you will need to set up for your 
 own program. All of these options are described on their respective documentation page.
