@@ -92,5 +92,5 @@ fscc_disable_append_timestamp(h);
 
 
 ### Additional Resources
-- Complete example: [`examples\append-timestamp.c`](https://github.com/commtech/cfscc/blob/master/examples/append-timestamp/append-timestamp.c)
+- Complete example: [`examples\append-timestamp.c`](https://github.com/commtech/cfscc/blob/master/examples/append-timestamp.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

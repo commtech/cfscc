@@ -93,5 +93,5 @@ fscc_disable_ignore_timeout(h);
 
 
 ### Additional Resources
-- Complete example: [`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
+- Complete example: [`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

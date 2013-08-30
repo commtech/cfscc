@@ -92,5 +92,5 @@ fscc_disable_rx_multiple(h);
 
 
 ### Additional Resources
-- Complete example: [`examples\rx-multiple.c`](https://github.com/commtech/cfscc/blob/master/examples/rx-multiple/rx-multiple.c)
+- Complete example: [`examples\rx-multiple.c`](https://github.com/commtech/cfscc/blob/master/examples/rx-multiple.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

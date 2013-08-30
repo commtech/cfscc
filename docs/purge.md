@@ -58,5 +58,5 @@ fscc_purge(h, 0, 1);
 
 
 ### Additional Resources
-- Complete example: [`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
+- Complete example: [`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

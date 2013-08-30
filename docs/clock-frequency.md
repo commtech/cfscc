@@ -50,5 +50,5 @@ fscc_set_clock_frequency(h, 18432000);
 
 
 ### Additional Resources
-- Complete example: [`examples\clock-frequency.c`](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c)
+- Complete example: [`examples\clock-frequency.c`](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

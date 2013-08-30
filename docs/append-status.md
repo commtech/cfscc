@@ -100,5 +100,5 @@ fscc_disable_append_status(h);
 
 
 ### Additional Resources
-- Complete example: [`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
+- Complete example: [`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

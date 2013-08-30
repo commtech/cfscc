@@ -45,5 +45,5 @@ fscc_write(h, odata, sizeof(odata), &bytes_written, NULL);
 
 
 ### Additional Resources
-- Complete example: [`examples\tutorial.c`](https://github.com/commtech/cfscc/blob/master/examples/tutorial/tutorial.c)
+- Complete example: [`examples\tutorial.c`](https://github.com/commtech/cfscc/blob/master/examples/tutorial.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

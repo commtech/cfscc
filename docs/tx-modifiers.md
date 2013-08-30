@@ -70,5 +70,5 @@ fscc_set_tx_modifiers(h, XF | XREP);
 
 
 ### Additional Resources
-- Complete example: [`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers/tx-modifiers.c)
+- Complete example: [`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)

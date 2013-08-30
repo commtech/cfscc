@@ -105,5 +105,5 @@ fscc_set_memory_cap(h, &memcap);
 
 
 ### Additional Resources
-- Complete example: [`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
+- Complete example: [`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap.c)
 - Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
