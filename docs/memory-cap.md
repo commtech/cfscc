@@ -11,6 +11,15 @@ option for setting it's input and output memory cap.
 | `fscc-linux`   | `v2.0.0` 
 
 
+## Structure
+```c
+struct fscc_memory_cap {
+    int input;
+    int output;
+};
+```
+
+
 ## Macros
 ```c
 FSCC_MEMORY_CAP_INIT(memcap)
