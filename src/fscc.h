@@ -1,5 +1,3 @@
-/*! \file */
-
 /*
     Copyright (C) 2013 Commtech, Inc.
 
@@ -37,8 +35,8 @@ extern "C"
 
 #include <string.h>
 
-#define FSCC_REGISTERS_INIT(registers) memset(&registers, -1, sizeof(registers))
-#define FSCC_MEMORY_CAP_INIT(memory_cap) memset(&memory_cap, -1, sizeof(memory_cap))
+#define FSCC_REGISTERS_INIT(regs) memset(&regs, -1, sizeof(regs))
+#define FSCC_MEMORY_CAP_INIT(memcap) memset(&memcap, -1, sizeof(memcap))
 #define FSCC_UPDATE_VALUE -2
 
 enum error_type { FSCC_TIMEOUT=16000, FSCC_INCORRECT_MODE, FSCC_BUFFER_TOO_SMALL };
@@ -206,7 +204,7 @@ DLL_EXPORT int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *byt
 DLL_EXPORT int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
 DLL_EXPORT int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, unsigned timeout);
 DLL_EXPORT int fscc_disconnect(fscc_handle h);
-DLL_EXPORT int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm);
+DLL_EXPORT int fscc_set_clock_frequency(fscc_handle h, unsigned frequency);
 
 #ifdef __cplusplus
 }

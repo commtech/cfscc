@@ -1,5 +1,3 @@
-/*! \file */
-
 /*
     Copyright (C) 2013 Commtech, Inc.
 
@@ -276,431 +274,98 @@ int fscc_connect(unsigned port_num, int overlapped, fscc_handle *h)
 #endif
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Sets the transmit modifiers for the port.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] modifiers
-    bit mask of the transmit modifier values
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \note
-    XF - Normal transmit - disable modifiers
-    XREP - Transmit repeat
-    TXT - Transmit on timer
-    TXEXT - Transmit on external signal
-
-  \snippet set-tx-modifiers.c Set TXT | XREP
-  \snippet set-tx-modifiers.c Set XF
-
-*/
-/******************************************************************************/
 int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers)
 {
     return ioctl_set_integer(h, FSCC_SET_TX_MODIFIERS, modifiers);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Gets the transmit modifiers for the port.
-
-  \param[in] h
-    HANDLE to the port
-  \param[out] modifiers
-    bit mask of the transmit modifier values
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \note
-    XF - Normal transmit - disable modifiers
-    XREP - Transmit repeat
-    TXT - Transmit on timer
-    TXEXT - Transmit on external signal
-
-  \snippet get-tx-modifiers.c Setup variables
-  \snippet get-tx-modifiers.c Get modifiers
-
-*/
-/******************************************************************************/
 int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers)
 {
     return ioctl_get_integer(h, FSCC_GET_TX_MODIFIERS, (int *)modifiers);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Sets the FSCC driver's memory caps.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] memcap
-    input and output memory cap values
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-memory-cap.c Setup variables
-  \snippet set-memory-cap.c Set memory cap
-
-*/
-/******************************************************************************/
 int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
 {
     return ioctl_set_pointer(h, FSCC_SET_MEMORY_CAP, memcap, sizeof(*memcap));
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Gets the FSCC driver's memory caps.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] memcap
-    input and output memory cap values
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet get-memory-cap.c Setup variables
-  \snippet get-memory-cap.c Get memory cap
-
-*/
-/******************************************************************************/
 int fscc_get_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
 {
     return ioctl_get_pointer(h, FSCC_GET_MEMORY_CAP, memcap, sizeof(*memcap));
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Sets a port's register values.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] regs
-    the new register values
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-registers.c Setup variables
-  \snippet set-registers.c Set registers
-
-*/
-/******************************************************************************/
 int fscc_set_registers(fscc_handle h, const struct fscc_registers *regs)
 {
     return ioctl_set_pointer(h, FSCC_SET_REGISTERS, regs, sizeof(*regs));
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Gets a port's register values.
-
-  \param[in] h
-    HANDLE to the port
-  \param[out] regs
-    the register values
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet get-registers.c Setup variables
-  \snippet get-registers.c Get registers
-
-*/
-/******************************************************************************/
 int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 {
     return ioctl_getset_pointer(h, FSCC_GET_REGISTERS, regs, sizeof(*regs));
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Gets a port's append status value.
-
-  \param[in] h
-    HANDLE to the port
-  \param[out] status
-    the append status value
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet get-append-status.c Setup variables
-  \snippet get-append-status.c Get append status
-
-*/
-/******************************************************************************/
 int fscc_get_append_status(fscc_handle h, unsigned *status)
 {
     return ioctl_get_boolean(h, FSCC_GET_APPEND_STATUS, status);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Enable appending the status to the received data.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-append-status.c Enable append status
-
-*/
-/******************************************************************************/
 int fscc_enable_append_status(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_STATUS,
                              FSCC_DISABLE_APPEND_STATUS, 1);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Disable appending the status to the received data.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-append-status.c Disable append status
-
-*/
-/******************************************************************************/
 int fscc_disable_append_status(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_STATUS,
                              FSCC_DISABLE_APPEND_STATUS, 0);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Gets a port's append timestamp value.
-
-  \param[in] h
-    HANDLE to the port
-  \param[out] status
-    the append timestamp value
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_get_append_timestamp(fscc_handle h, unsigned *status)
 {
     return ioctl_get_boolean(h, FSCC_GET_APPEND_TIMESTAMP, status);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Enable appending the timestamp to the received data.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_enable_append_timestamp(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_TIMESTAMP,
                              FSCC_DISABLE_APPEND_TIMESTAMP, 1);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Disable appending the timestamp to the received data.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_disable_append_timestamp(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_TIMESTAMP,
                              FSCC_DISABLE_APPEND_TIMESTAMP, 0);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Gets a port's ignore timeout value.
-
-  \param[in] h
-    HANDLE to the port
-  \param[out] status
-    the append status value
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet get-ignore-timeout.c Setup variables
-  \snippet get-ignore-timeout.c Get ignore timeout
-
-*/
-/******************************************************************************/
 int fscc_get_ignore_timeout(fscc_handle h, unsigned *status)
 {
     return ioctl_get_boolean(h, FSCC_GET_IGNORE_TIMEOUT, status);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Ignore card timeouts.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-ignore-timeout.c Enable ignore timeout
-
-*/
-/******************************************************************************/
 int fscc_enable_ignore_timeout(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_IGNORE_TIMEOUT,
                              FSCC_DISABLE_IGNORE_TIMEOUT, 1);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Disable ignore timeout.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-ignore-timeout.c Disable ignore timeout
-
-*/
-/******************************************************************************/
 int fscc_disable_ignore_timeout(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_IGNORE_TIMEOUT,
                              FSCC_DISABLE_IGNORE_TIMEOUT, 0);
 }
-/******************************************************************************/
-/*!
 
-  \brief Gets a port's receive multiple value.
-
-  \param[in] h
-    HANDLE to the port
-  \param[out] status
-    the rx multiple value
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_get_rx_multiple(fscc_handle h, unsigned *status)
 {
     return ioctl_get_boolean(h, FSCC_GET_RX_MULTIPLE, status);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Receive frames in groups.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_enable_rx_multiple(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_RX_MULTIPLE,
                              FSCC_DISABLE_RX_MULTIPLE, 1);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Disable receive multiple.
-
-  \param[in] h
-    HANDLE to the port
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_disable_rx_multiple(fscc_handle h)
 {
     return ioctl_set_boolean(h, FSCC_ENABLE_RX_MULTIPLE,
@@ -758,35 +423,11 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
     return 0;
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Sets a port's clock frequency.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] frequency
-    the new clock frequency
-  \param[in] ppm
-    TODO
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \snippet set-clock-frequency.c Set clock frequency
-
-  \todo
-    What should I do about PPM?
-
-*/
-/******************************************************************************/
-int fscc_set_clock_frequency(fscc_handle h, unsigned frequency, unsigned ppm)
+int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 {
     unsigned char clock_bits[20];
 
-    calculate_clock_bits(frequency, ppm, clock_bits);
+    calculate_clock_bits(frequency, 10, clock_bits);
 
     return ioctl_set_pointer(h, FSCC_SET_CLOCK_BITS, clock_bits, sizeof(clock_bits));
 }
