@@ -77,8 +77,10 @@ There are likely other configuration options you will need to set up for your
 own program. All of these options are described on their respective documentation page.
 
 - [Append Status](https://github.com/commtech/cfscc/blob/master/docs/append-status.md)
+- [Append Timestamp](https://github.com/commtech/cfscc/blob/master/docs/append-timestamp.md)
 - [Clock Frequency](https://github.com/commtech/cfscc/blob/master/docs/clock-frequency.md)
 - [Ignore Timeout](https://github.com/commtech/cfscc/blob/master/docs/ignore-timeout.md)
+- [RX Multiple](https://github.com/commtech/cfscc/blob/master/docs/rx-multiple.md)
 - [Memory Cap](https://github.com/commtech/cfscc/blob/master/docs/memory-cap.md)
 - [Purge](https://github.com/commtech/cfscc/blob/master/docs/purge.md)
 - [Registers](https://github.com/commtech/cfscc/blob/master/docs/registers.md)
