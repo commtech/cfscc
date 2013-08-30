@@ -14,7 +14,7 @@ fscc_get_ignore_timeout(h, &status);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout.c)
+[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
 
 
 Enable
@@ -28,7 +28,7 @@ fscc_enable_ignore_timeout(h);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout.c)
+[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
 
 
 Disable
@@ -42,4 +42,4 @@ fscc_disable_ignore_timeout(h);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout.c)
+[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
