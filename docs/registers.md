@@ -89,6 +89,9 @@ int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
 | `h`       | `fscc_handle`             | The handle to your port
 | `regs`    | `struct fscc_registers *` | The registers you would like to set
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```
@@ -121,6 +124,9 @@ int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 | `h`       | `fscc_handle`             | The handle to your port
 | `regs`    | `struct fscc_registers *` | The register values you would like to view
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```

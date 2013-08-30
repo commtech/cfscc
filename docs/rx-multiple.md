@@ -17,6 +17,9 @@ int fscc_get_rx_multiple(fscc_handle h, unsigned *status)
 | `h`       | `fscc_handle`    | The handle to your port
 | `status`  | `unsigned int *` | The current `rx multiple` value
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```c
@@ -43,6 +46,9 @@ int fscc_enable_rx_multiple(fscc_handle h)
 | --------- | ---------------- | -----------------------
 | `h`       | `fscc_handle`    | The handle to your port
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```c
@@ -67,6 +73,9 @@ int fscc_disable_rx_multiple(fscc_handle h)
 | --------- | ---------------- | -----------------------
 | `h`       | `fscc_handle`    | The handle to your port
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```c

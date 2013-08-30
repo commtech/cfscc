@@ -21,14 +21,10 @@ fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 | `tx`      | `unsigned int` | Whether to purge the transmit data
 | `rx`      | `unsigned int` | Whether to purge the receive data
 
-
-###### Errors
-In addition to your standard platform errors, there is FSCC specific error(s) you might encounter.
-
-| Error          | Cause
+| Return Value   | Cause
 | -------------- | ------------------------------------------------------------------
+| 0              | Success
 | `FSCC_TIMEOUT` | You are executing a command that requires a transmit clock present
-
 
 ###### Examples
 Purge both the transmit and receive data.

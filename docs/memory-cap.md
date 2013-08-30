@@ -44,6 +44,9 @@ int fscc_get_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
 | `h`       | `fscc_handle`                    | The handle to your port
 | `memcap`  | `const struct fscc_memory_cap *` | The current `memory cap` values
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```
@@ -76,6 +79,9 @@ int fscc_set_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
 | `h`       | `fscc_handle`              | The handle to your port
 | `memcap`  | `struct fscc_memory_cap *` | The new `memory cap` value(s)
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```

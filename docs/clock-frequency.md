@@ -29,6 +29,10 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 | `h`          | `fscc_handle` | The handle to your port
 | `frequency`  | `unsigned`    | The new clock frequency (hz)
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
+
 
 ###### Examples
 Set the port's clock frequency to 18.432 MHz.

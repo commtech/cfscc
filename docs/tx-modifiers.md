@@ -21,6 +21,9 @@ int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers)
 | `h`         | `fscc_handle`    | The handle to your port
 | `modifiers` | `unsigned int *` | The current `tx modifiers` value
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```
@@ -48,6 +51,9 @@ int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers)
 | `h`         | `fscc_handle`  | The handle to your port
 | `modifiers` | `unsigned int` | What `tx modifiers` you would like to set
 
+| Return Value | Cause
+| ------------ | ------------------------------------------------------------------
+| 0            | Success
 
 ###### Examples
 ```
