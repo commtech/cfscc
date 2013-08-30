@@ -74,157 +74,16 @@ Hello world!
 You have now transmitted and received an HDLC frame! 
 
 There are likely other configuration options you will need to set up for your 
-own program. All of these options are described below.
+own program. All of these options are described on their respective documentation page.
 
+- [Append Status](https://github.com/commtech/cfscc/blob/master/examples/append-status/append-status.c)
+- [Clock Frequency](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c)
+- [Ignore Timeout](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout/ignore-timeout.c)
+- [Memory Cap](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
+- [Purge](https://github.com/commtech/cfscc/blob/master/examples/purge/purge.c)
+- [Registers](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c)
+- [TX Modifiers](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers/tx-modifiers.c)
 
-##### fscc_set_registers
-```
-#include <fscc.h>
-...
-
-struct fscc_registers registers;
-
-FSCC_REGISTERS_INIT(registers);
-
-registers.CCR0 = 0x0011201c;
-registers.BGR = 10;
-
-fscc_set_registers(h, &registers);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\registers.c`](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c).
-
-
-##### fscc_get_registers
-```
-#include <fscc.h>
-...
-
-struct fscc_registers registers;
-
-FSCC_REGISTERS_INIT(registers);
-
-registers.CCR0 = FSCC_UPDATE_VALUE;
-registers.BGR = FSCC_UPDATE_VALUE;
-
-fscc_get_registers(h, &registers);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\registers.c`](https://github.com/commtech/cfscc/blob/master/examples/registers/registers.c).
-
-
-##### fscc_set_clock_frequency
-_PPM (Parts Per Million) has been deprecated and will be removed in 
-a future release. This value will be ignored in the mean time._
-
-```c
-#include <fscc.h>
-...
-
-fscc_set_clock_frequency(h, 18432000, 2);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\clock-frequency.c`](https://github.com/commtech/cfscc/blob/master/examples/clock-frequency/clock-frequency.c).
-
-
-##### fscc_get_append_status
-```c
-#include <fscc.h>
-...
-
-BOOL status;
-
-fscc_enable_append_status(h);
-fscc_disable_append_status(h);
-
-fscc_get_append_status(h, &status);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\append-status.c`](https://github.com/commtech/cfscc/blob/master/examples/append-status.c)
-
-
-##### fscc_set_memory_cap
-##### fscc_get_memory_cap
-```
-#include <fscc.h>
-...
-
-struct fscc_memory_cap memcap;
-
-memcap.input = 1000000; /* 1 MB */
-memcap.output = 2000000; /* 2 MB */
-
-fscc_set_memory_cap(h, &memcap);
-fscc_get_memory_cap(h, &memcap);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap.c)
-
-
-##### fscc_set_tx_modifiers
-```
-#include <fscc.h>
-...
-
-unsigned modifiers;
-
-fscc_set_tx_modifiers(h, XF | XREP);
-fscc_get_tx_modifiers(h, &modifiers);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\tx-modifiers.c`](https://github.com/commtech/cfscc/blob/master/examples/tx-modifiers.c)
-
-
-##### Ignore Timeout
-```c
-#include <fscc.h>
-...
-
-BOOL status;
-
-fscc_enable_ignore_timeout(h);
-fscc_disable_ignore_timeout(h);
-
-fscc_get_ignore_timeout(h, &status);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\ignore-timeout.c`](https://github.com/commtech/cfscc/blob/master/examples/ignore-timeout.c)
-
-
-##### Retrieving Multiple Frames At Once
-```c
-#include <fscc.h>
-...
-
-BOOL status;
-
-fscc_enable_rx_multiple(h);
-fscc_disable_rx_multiple(h);
-
-fscc_get_rx_multiple(h, &status);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\rx-multiple.c`](https://github.com/commtech/cfscc/blob/master/examples/rx-multiple.c)
-
-
-##### Purging Data
-```c
-#include <fscc.h>
-...
-
-fscc_purge(h, TRUE, TRUE);
-```
-
-A complete example of how to do this can be found in the file
-[`examples\purge.c`](https://github.com/commtech/cfscc/blob/master/examples/purge.c)
 
 
 ##### Sending/Receiving Data
