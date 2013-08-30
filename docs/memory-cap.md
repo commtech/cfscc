@@ -21,7 +21,7 @@ At this point `memcap.input` and `memcap.output` would be set to their respectiv
 values.
 
 A complete example of how to do this can be found in the file
-[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap.c)
+[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
 
 
 Set
@@ -40,4 +40,4 @@ fscc_set_memory_cap(h, &memcap);
 ```
 
 A complete example of how to do this can be found in the file
-[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap.c)
+[`examples\memory-cap.c`](https://github.com/commtech/cfscc/blob/master/examples/memory-cap/memory-cap.c)
