@@ -102,9 +102,9 @@ int init(HANDLE h)
 		return EXIT_FAILURE;
 	}
 
-	e = fscc_disable_ignore_timeout(h);
+	e = fscc_disable_rx_multiple(h);
 	if (e != 0) {
-		fprintf(stderr, "fscc_disable_ignore_timeout failed with %d\n", e);
+		fprintf(stderr, "fscc_disable_rx_multiple failed with %d\n", e);
 		return EXIT_FAILURE;
 	}
 
@@ -157,7 +157,7 @@ int init(HANDLE h)
 		return EXIT_FAILURE;
 	}
 
-	e = fscc_set_clock_frequency(h, 18432000, 2);
+	e = fscc_set_clock_frequency(h, 1000000);
 	if (e != 0) {
 		fprintf(stderr, "fscc_set_clock_frequency failed with %d\n", e);
 		return EXIT_FAILURE;
