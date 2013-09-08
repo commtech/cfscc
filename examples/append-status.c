@@ -1,11 +1,9 @@
-#include <stdlib.h> /* EXIT_SUCCESS */
-#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
-                     fscc_{get, enable, disable}_append_status */
+#include <fscc.h> /* fscc_* */
 
 int main(void)
 {
 	fscc_handle h;
-	unsigned status;
+    unsigned status;
 
 	fscc_connect(0, 0, &h);
 
@@ -16,5 +14,5 @@ int main(void)
 
 	fscc_disconnect(h);
 
-	return EXIT_SUCCESS;
+	return 0;
 }

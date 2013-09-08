@@ -1,11 +1,12 @@
 # Write
 
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Write
@@ -14,7 +15,7 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 ```
 
 | Parameter    | Type             | Description
-| ------------ | ---------------- | -----------------------
+| ------------ | ---------------- | -----------------------------------------------------------------------------------------------
 | `h`          | `fscc_handle`    | The handle to your port
 | `buf`        | `char *`         | The data buffer to transmit
 | `size`       | `unsigned`       | The number of bytes to transmit
@@ -37,11 +38,6 @@ unsigned bytes_written;
 
 fscc_write(h, odata, sizeof(odata), &bytes_written, NULL);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

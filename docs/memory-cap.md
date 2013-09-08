@@ -4,11 +4,12 @@ prevent spurious incoming data from overrunning your system. Each port has an
 option for setting it's input and output memory cap.
 
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Structure
@@ -40,12 +41,12 @@ int fscc_get_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
 ```
 
 | Parameter | Type                             | Description
-| --------- | -------------------------------- | -----------------------
+| --------- | -------------------------------- | -------------------------------
 | `h`       | `fscc_handle`                    | The handle to your port
 | `memcap`  | `const struct fscc_memory_cap *` | The current `memory cap` values
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -63,11 +64,6 @@ fscc_get_memory_cap(h, &memcap);
 At this point `memcap.input` and `memcap.output` would be set to their respective
 values.
 
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
-
 
 ## Set
 ```c
@@ -75,12 +71,12 @@ int fscc_set_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
 ```
 
 | Parameter | Type                       | Description
-| --------- | -------------------------- | -----------------------
+| --------- | -------------------------- | -----------------------------
 | `h`       | `fscc_handle`              | The handle to your port
 | `memcap`  | `struct fscc_memory_cap *` | The new `memory cap` value(s)
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -97,11 +93,6 @@ memcap.output = 2000000; /* 2 MB */
 
 fscc_set_memory_cap(h, &memcap);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

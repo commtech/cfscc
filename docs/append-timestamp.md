@@ -1,10 +1,11 @@
 # Append Timestamp
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.4.0` 
 | `fscc-linux`   | `v2.4.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Get
@@ -13,12 +14,12 @@ int fscc_get_append_timestamp(fscc_handle h, unsigned *status)
 ```
 
 | Parameter | Type             | Description
-| --------- | ---------------- | -----------------------
+| --------- | ---------------- | ------------------------------------
 | `h`       | `fscc_handle`    | The handle to your port
 | `status`  | `unsigned int *` | The current `append timestamp` value
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -31,11 +32,6 @@ unsigned status;
 fscc_get_append_timestamp(h, &status);
 ```
 
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
-
 
 ## Enable
 ```c
@@ -47,7 +43,7 @@ int fscc_enable_append_timestamp(fscc_handle h)
 | `h`       | `fscc_handle`    | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -57,11 +53,6 @@ int fscc_enable_append_timestamp(fscc_handle h)
 
 fscc_enable_append_timestamp(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ## Disable
@@ -74,7 +65,7 @@ int fscc_disable_append_timestamp(fscc_handle h)
 | `h`       | `fscc_handle`    | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -84,11 +75,6 @@ int fscc_disable_append_timestamp(fscc_handle h)
 
 fscc_disable_append_timestamp(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

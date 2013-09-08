@@ -1,10 +1,11 @@
 # RX Multiple
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.2.9` 
 | `fscc-linux`   | `v2.2.4` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Get
@@ -18,7 +19,7 @@ int fscc_get_rx_multiple(fscc_handle h, unsigned *status)
 | `status`  | `unsigned int *` | The current `rx multiple` value
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -31,11 +32,6 @@ unsigned status;
 fscc_get_rx_multiple(h, &status);
 ```
 
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
-
 
 ## Enable
 ```c
@@ -47,7 +43,7 @@ int fscc_enable_rx_multiple(fscc_handle h)
 | `h`       | `fscc_handle`    | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -57,11 +53,6 @@ int fscc_enable_rx_multiple(fscc_handle h)
 
 fscc_enable_rx_multiple(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ## Disable
@@ -74,7 +65,7 @@ int fscc_disable_rx_multiple(fscc_handle h)
 | `h`       | `fscc_handle`    | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -84,11 +75,6 @@ int fscc_disable_rx_multiple(fscc_handle h)
 
 fscc_disable_rx_multiple(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

@@ -21,11 +21,12 @@ You should purge the data stream after changing the registers.
 Settings like CCR0 will require being purged for the changes to take 
 effect.
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Structure
@@ -71,7 +72,7 @@ FSCC_REGISTERS_INIT(regs)
 ```
 
 | Parameter | Type                      | Description
-| --------- | ------------------------- | -----------------------
+| --------- | ------------------------- | -------------------------------------
 | `regs`    | `struct fscc_registers *` | The registers structure to initialize
 
 The `FSCC_REGISTERS_INIT` macro should be called each time you use the 
@@ -90,7 +91,7 @@ int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
 | `regs`    | `struct fscc_registers *` | The registers you would like to set
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -98,20 +99,15 @@ int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
 #include <fscc.h>
 ...
 
-struct fscc_registers registers;
+struct fscc_registers regs;
 
-FSCC_REGISTERS_INIT(registers);
+FSCC_REGISTERS_INIT(regs);
 
-registers.CCR0 = 0x0011201c;
-registers.BGR = 10;
+regs.CCR0 = 0x0011201c;
+regs.BGR = 10;
 
-fscc_set_registers(h, &registers);
+fscc_set_registers(h, &regs);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ## Get
@@ -120,12 +116,12 @@ int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 ```
 
 | Parameter | Type                      | Description
-| --------- | ------------------------- | -----------------------
+| --------- | ------------------------- | ------------------------------------------
 | `h`       | `fscc_handle`             | The handle to your port
 | `regs`    | `struct fscc_registers *` | The register values you would like to view
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -133,23 +129,18 @@ int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 #include <fscc.h>
 ...
 
-struct fscc_registers registers;
+struct fscc_registers regs;
 
-FSCC_REGISTERS_INIT(registers);
+FSCC_REGISTERS_INIT(regs);
 
-registers.CCR0 = FSCC_UPDATE_VALUE;
-registers.BGR = FSCC_UPDATE_VALUE;
+regs.CCR0 = FSCC_UPDATE_VALUE;
+regs.BGR = FSCC_UPDATE_VALUE;
 
-fscc_get_registers(h, &registers);
+fscc_get_registers(h, &regs);
 ```
 
 At this point `regs.CCR0` and `regs.BGR` would be set to their respective
 values.
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

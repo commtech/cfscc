@@ -1,11 +1,12 @@
 # Disconnect
 
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Disconnect
@@ -18,7 +19,7 @@ int fscc_disconnect(fscc_handle h)
 | `h`          | `fscc_handle` | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -28,11 +29,6 @@ int fscc_disconnect(fscc_handle h)
 
 fscc_disconnect(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

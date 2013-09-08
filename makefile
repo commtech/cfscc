@@ -1,20 +1,16 @@
-SHELL = /bin/sh
-TARGET = cfscc.so
+TARGET = cfscc
 
-SRCS = $(shell echo src/*.c)
-HEADERS = $(shell echo src/*.h)
-OBJS = $(SRCS:.c=.o)
+SOURCES = src/fscc.c src/calculate-clock-bits.c
+HEADERS = src/fscc.h
 
-CFLAGS = -fPIC -Wall -Wextra
-LDFLAGS = -shared
+all: $(TARGET).dll
+debug: $(TARGET)d.dll
 
-CC = gcc
+$(TARGET).dll:$(SOURCES) $(HEADERS)
+  cl /W4 /WX /D_WIN32_WINNT=0x0502 $(SOURCES) /Fe$@ /LD
 
-all: $(TARGET)
-
-$(TARGET): $(HEADERS) $(OBJS)
-	$(CC) $(CFLAGS) $(LDFLAGS) $(HEADERS) $(OBJS) -o $(TARGET) -lm
-
+$(TARGET)d.dll:$(SOURCES) $(HEADERS)
+  cl /W4 /WX /D_WIN32_WINNT=0x0502 $(SOURCES) /Fe$@ /LDd /Zi
+  
 clean:
-	rm src/*.o
-	rm cfscc.so
+  del cfscc* *.obj

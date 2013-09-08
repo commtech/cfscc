@@ -1,24 +1,21 @@
-#include <stdlib.h> /* EXIT_SUCCESS */
-#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
-                     TXT, XREP, XF, fscc_{get, set}_tx_modifiers */
+#include <fscc.h> /* fscc_* */
 
 int main(void)
 {
-	fscc_handle h;
-	unsigned modifiers;
+    fscc_handle h;
+    unsigned modifiers;
 
-	fscc_connect(0, 0, &h);
+    fscc_connect(0, 0, &h);
 
-	/* Enable transmit repeat & transmit on timer */
-	fscc_set_tx_modifiers(h, TXT | XREP);
+    fscc_get_tx_modifiers(h, &modifiers);
 
-	/* Revert to normal transmission */
-	fscc_set_tx_modifiers(h, XF);
+    /* Enable transmit repeat & transmit on timer */
+    fscc_set_tx_modifiers(h, TXT | XREP);
 
-	/* Get current modifiers */
-	fscc_get_tx_modifiers(h, &modifiers);
+    /* Revert to normal transmission */
+    fscc_set_tx_modifiers(h, XF);
 
-	fscc_disconnect(h);
+    fscc_disconnect(h);
 
-	return EXIT_SUCCESS;
+    return 0;
 }

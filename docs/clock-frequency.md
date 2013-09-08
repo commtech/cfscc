@@ -12,11 +12,12 @@ the frequency generator to finish. If you run into this situation we
 recommend using a larger frequency and then dividing it down to your 
 desired baud rate using the BGR register.
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Set
@@ -25,12 +26,12 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 ```
 
 | Parameter    | Type          | Description
-| ------------ | ------------- | -----------------------
+| ------------ | ------------- | ----------------------------
 | `h`          | `fscc_handle` | The handle to your port
 | `frequency`  | `unsigned`    | The new clock frequency (hz)
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 
@@ -42,11 +43,6 @@ Set the port's clock frequency to 18.432 MHz.
 
 fscc_set_clock_frequency(h, 18432000);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

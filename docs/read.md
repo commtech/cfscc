@@ -27,11 +27,12 @@ We won't duplicate the documentation here, but for your reference, here is an [a
 (http://blogs.msdn.com/b/oldnewthing/archive/2011/02/02/10123392.aspx) on a common
 bug developers introduce while trying to cancel I/O operations when using OVERLAPPED I/O.
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Read
@@ -40,7 +41,7 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVE
 ```
 
 | Parameter    | Type             | Description
-| ------------ | ---------------- | -----------------------
+| ------------ | ---------------- | ------------------------------------------------------------------------------------------------
 | `h`          | `fscc_handle`    | The handle to your port
 | `buf`        | `char *`         | The data buffer to hold incoming data
 | `size`       | `unsigned`       | The data buffer size
@@ -48,7 +49,7 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVE
 | `o`          | `OVERLAPPED *`   | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx)
 
 | Return Value            | Cause
-| ----------------------- | ------------------------------------------------------------------
+| ----------------------- | --------------------------------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The read size is smaller than the next frame (in a frame based mode)
 
@@ -62,11 +63,6 @@ unsigned bytes_read;
 
 fscc_read(h, idata, sizeof(idata), &bytes_read, NULL);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ## Read (Timeout)
@@ -83,7 +79,7 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *by
 | `timeout`    | `unsigned`       | Number of milliseconds to wait for data before timing out
 
 | Return Value            | Cause
-| ----------------------- | ------------------------------------------------------------------
+| ----------------------- | --------------------------------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The read size is smaller than the next frame (in a frame based mode)
 
@@ -97,11 +93,6 @@ unsigned bytes_read;
 
 fscc_read_with_timeout(h, idata, sizeof(idata), &bytes_read, 100);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

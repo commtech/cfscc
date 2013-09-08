@@ -1,10 +1,11 @@
 # Ignore Timeout
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Get
@@ -13,12 +14,12 @@ int fscc_get_ignore_timeout(fscc_handle h, unsigned *status)
 ```
 
 | Parameter | Type             | Description
-| --------- | ---------------- | -----------------------
+| --------- | ---------------- | ----------------------------------
 | `h`       | `fscc_handle`    | The handle to your port
 | `status`  | `unsigned int *` | The current `ignore timeout` value
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 
@@ -32,11 +33,6 @@ unsigned status;
 fscc_get_ignore_timeout(h, &status);
 ```
 
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
-
 
 ## Enable
 ```c
@@ -48,7 +44,7 @@ int fscc_enable_ignore_timeout(fscc_handle h)
 | `h`       | `fscc_handle`    | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -58,11 +54,6 @@ int fscc_enable_ignore_timeout(fscc_handle h)
 
 fscc_enable_ignore_timeout(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ## Disable
@@ -75,7 +66,7 @@ int fscc_disable_ignore_timeout(fscc_handle h)
 | `h`       | `fscc_handle`    | The handle to your port
 
 | Return Value | Cause
-| ------------ | ------------------------------------------------------------------
+| ------------ | -------
 | 0            | Success
 
 ###### Examples
@@ -85,11 +76,6 @@ int fscc_disable_ignore_timeout(fscc_handle h)
 
 fscc_disable_ignore_timeout(h);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources

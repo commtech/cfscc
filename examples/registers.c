@@ -1,36 +1,33 @@
-#include <stdlib.h> /* EXIT_SUCCESS */
-#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
-                     FSCC_REGISTERS_INIT, FSCC_UPDATE_VALUE
-                     fscc_{get, set}_registers */
+#include <fscc.h> /* fscc_* */
 
 int main(void)
 {
-	fscc_handle h;
-	struct fscc_registers r;
+    fscc_handle h;
+    struct fscc_registers regs;
 
-	fscc_connect(0, 0, &h);
+    fscc_connect(0, 0, &h);
 
-	/* Initialize our registers structure */
-	FSCC_REGISTERS_INIT(r);
+    /* Initialize our registers structure */
+    FSCC_REGISTERS_INIT(regs);
 
-	/* Change the CCR0 and BGR elements to our desired values */
-	r.CCR0 = 0x0011201c;
-	r.BGR = 10;
+    /* Change the CCR0 and BGR elements to our desired values */
+    regs.CCR0 = 0x0011201c;
+    regs.BGR = 10;
 
-	/* Set the CCR0 and BGR register values */
-	fscc_set_registers(h, &r);
+    /* Set the CCR0 and BGR register values */
+    fscc_set_registers(h, &regs);
 
-	/* Initialize our registers structure */
-	FSCC_REGISTERS_INIT(r);
+    /* Re-initialize our registers structure */
+    FSCC_REGISTERS_INIT(regs);
 
-	/* Mark the CCR0 and CCR1 elements to retrieve values */
-	r.CCR1 = FSCC_UPDATE_VALUE;
-	r.CCR2 = FSCC_UPDATE_VALUE;
+    /* Mark the CCR0 and CCR1 elements to retrieve values */
+    regs.CCR1 = FSCC_UPDATE_VALUE;
+    regs.CCR2 = FSCC_UPDATE_VALUE;
 
-	/* Get the CCR1 and CCR2 register values */
-	fscc_get_registers(h, &r);
+    /* Get the CCR1 and CCR2 register values */
+    fscc_get_registers(h, &regs);
 
-	fscc_disconnect(h);
+    fscc_disconnect(h);
 
-	return EXIT_SUCCESS;
+    return 0;
 }

@@ -63,14 +63,14 @@ int ioctl_action(fscc_handle h, int ioctl_name)
     int result;
 
 #ifdef _WIN32
-	DWORD temp;
+    DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                     NULL, 0,
-							 NULL, 0,
-							 &temp, (LPOVERLAPPED)NULL);
+    result = DeviceIoControl(h, (DWORD)ioctl_name,
+                             NULL, 0,
+                             NULL, 0,
+                             &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name);
 
@@ -93,14 +93,14 @@ int ioctl_get_boolean(fscc_handle h, int ioctl_name, unsigned *status)
     int result;
 
 #ifdef _WIN32
-	DWORD temp;
+    DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                     NULL, 0,
-							 status, sizeof(*status),
-							 &temp, (LPOVERLAPPED)NULL);
+    result = DeviceIoControl(h, (DWORD)ioctl_name,
+                             NULL, 0,
+                             status, sizeof(*status),
+                             &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name, status);
 
@@ -113,14 +113,14 @@ int ioctl_set_integer(fscc_handle h, int ioctl_name, int value)
     int result;
 
 #ifdef _WIN32
-	DWORD temp;
+    DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                     &value, sizeof(value),
-							 NULL, 0,
-							 &temp, (LPOVERLAPPED)NULL);
+    result = DeviceIoControl(h, (DWORD)ioctl_name,
+                             &value, sizeof(value),
+                             NULL, 0,
+                             &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name, &value);
 
@@ -133,14 +133,14 @@ int ioctl_get_integer(fscc_handle h, int ioctl_name, int *value)
     int result;
 
 #ifdef _WIN32
-	DWORD temp;
+    DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                     NULL, 0,
-							 value, sizeof(*value),
-							 &temp, (LPOVERLAPPED)NULL);
+    result = DeviceIoControl(h, (DWORD)ioctl_name,
+                             NULL, 0,
+                             value, sizeof(*value),
+                             &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     result = ioctl(h, ioctl_name, value);
 
@@ -154,14 +154,14 @@ int ioctl_set_pointer(fscc_handle h, int ioctl_name, const void *value,
     int result;
 
     #ifdef _WIN32
-	    DWORD temp;
+        DWORD temp;
 
-	    result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                         (void *)value, size,
-							     NULL, 0,
-							     &temp, (LPOVERLAPPED)NULL);
+        result = DeviceIoControl(h, (DWORD)ioctl_name,
+                                 (void *)value, size,
+                                 NULL, 0,
+                                 &temp, (LPOVERLAPPED)NULL);
 
-	    return (result == TRUE) ? 0 : translate_error(GetLastError());
+        return (result == TRUE) ? 0 : translate_error(GetLastError());
     #else
         UNUSED(size);
 
@@ -177,14 +177,14 @@ int ioctl_get_pointer(fscc_handle h, int ioctl_name, void *value,
     int result;
 
 #ifdef _WIN32
-	DWORD temp;
+    DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)ioctl_name,
-		                     NULL, 0,
-							 value, size,
-							 &temp, (LPOVERLAPPED)NULL);
+    result = DeviceIoControl(h, (DWORD)ioctl_name,
+                             NULL, 0,
+                             value, size,
+                             &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(size);
 
@@ -200,14 +200,14 @@ int ioctl_getset_pointer(fscc_handle h, int ioctl_name, void *value,
     int result;
 
 #ifdef _WIN32
-	DWORD temp;
+    DWORD temp;
 
-	result = DeviceIoControl(h, (DWORD)ioctl_name,
-							 value, size,
-							 value, size,
-							 &temp, (LPOVERLAPPED)NULL);
+    result = DeviceIoControl(h, (DWORD)ioctl_name,
+                             value, size,
+                             value, size,
+                             &temp, (LPOVERLAPPED)NULL);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(size);
 
@@ -222,23 +222,23 @@ int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h)
     char name[MAX_NAME_LENGTH];
 
 #ifdef _WIN32
-	DWORD flags_and_attributes = FILE_ATTRIBUTE_NORMAL;
+    DWORD flags_and_attributes = FILE_ATTRIBUTE_NORMAL;
 
-	sprintf_s(name, MAX_NAME_LENGTH, "\\\\.\\FSCC%u", port_num);
+    sprintf_s(name, MAX_NAME_LENGTH, "\\\\.\\FSCC%u", port_num);
 
-	if (overlapped)
-		flags_and_attributes |= FILE_FLAG_OVERLAPPED;
+    if (overlapped)
+        flags_and_attributes |= FILE_FLAG_OVERLAPPED;
 
-	*h = CreateFile(name,
-			GENERIC_READ | GENERIC_WRITE,
-			FILE_SHARE_READ | FILE_SHARE_WRITE,
-			NULL,
-			OPEN_EXISTING,
-			flags_and_attributes,
-			NULL
-	);
+    *h = CreateFile(name,
+            GENERIC_READ | GENERIC_WRITE,
+            FILE_SHARE_READ | FILE_SHARE_WRITE,
+            NULL,
+            OPEN_EXISTING,
+            flags_and_attributes,
+            NULL
+    );
 
-	return (*h != INVALID_HANDLE_VALUE) ? 0 : GetLastError();
+    return (*h != INVALID_HANDLE_VALUE) ? 0 : GetLastError();
 #else
     UNUSED(overlapped);
 
@@ -437,9 +437,9 @@ int fscc_write(fscc_handle h, char *buf, unsigned size,
     int result;
 
 #ifdef _WIN32
-	result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
+    result = WriteFile(h, buf, size, (DWORD*)bytes_written, o);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(o);
 
@@ -483,9 +483,9 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
     int result;
 #ifdef _WIN32
 
-	result = ReadFile(h, buf, size, (DWORD*)bytes_read, o);
+    result = ReadFile(h, buf, size, (DWORD*)bytes_read, o);
 
-	return (result == TRUE) ? 0 : translate_error(GetLastError());
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(o);
 
@@ -586,9 +586,9 @@ int fscc_disconnect(fscc_handle h)
     int result;
 
 #ifdef _WIN32
-	result = CloseHandle(h);
+    result = CloseHandle(h);
 
-	return (result == TRUE) ? 0 : GetLastError();
+    return (result == TRUE) ? 0 : GetLastError();
 #else
 
     result = close(h);

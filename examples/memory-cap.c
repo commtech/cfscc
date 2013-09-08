@@ -1,22 +1,20 @@
-#include <stdlib.h> /* EXIT_SUCCESS */
-#include <fscc.h> /* fscc_connect, fscc_disconnect, fscc_handle
-                     fscc_{get, set}_memory_cap, struct fscc_memory_cap */
+#include <fscc.h> /* fscc_* */
 
 int main(void)
 {
-	fscc_handle h;
-	struct fscc_memory_cap m;
+    fscc_handle h;
+    struct fscc_memory_cap memcap;
 
-	fscc_connect(0, 0, &h);
+    fscc_connect(0, 0, &h);
 
-	m.input = 1000000; /* 1 MB */
-	m.output = 2000000; /* 2 MB */
+    memcap.input = 1000000; /* 1 MB */
+    memcap.output = 2000000; /* 2 MB */
 
-	fscc_set_memory_cap(h, &m);
+    fscc_set_memory_cap(h, &memcap);
 
-	fscc_get_memory_cap(h, &m);
+    fscc_get_memory_cap(h, &memcap);
 
-	fscc_disconnect(h);
+    fscc_disconnect(h);
 
-	return EXIT_SUCCESS;
+    return 0;
 }

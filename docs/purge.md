@@ -3,11 +3,12 @@ Between the hardware FIFO and the driver's software buffers there are multiple p
 be stored, excluding your application code. If you ever need to clear this data and start fresh, 
 there are a couple of methods you can use.
 
-###### Driver Support
+###### Support
 | Code           | Version
 | -------------- | --------
 | `fscc-windows` | `v2.0.0` 
 | `fscc-linux`   | `v2.0.0` 
+| `cfscc`        | `v1.0.0`
 
 
 ## Execute
@@ -16,7 +17,7 @@ fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 ```
 
 | Parameter | Type           | Description
-| --------- | -------------- | -----------------------
+| --------- | -------------- | ----------------------------------
 | `h`       | `fscc_handle`  | The handle to your port
 | `tx`      | `unsigned int` | Whether to purge the transmit data
 | `rx`      | `unsigned int` | Whether to purge the receive data
@@ -50,11 +51,6 @@ Purge only the receive data.
 
 fscc_purge(h, 0, 1);
 ```
-
-###### Support
-| Code           | Version
-| -------------- | --------
-| `cfscc`        | `v1.0.0`
 
 
 ### Additional Resources
