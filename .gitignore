@@ -10,3 +10,5 @@
 *.hex
 *.gch
 *.out
+*.ilk
+*.pdb
