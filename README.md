@@ -4,7 +4,7 @@ This README file is best viewed [online](http://github.com/commtech/cfscc/).
 ## Installing Library
 
 ##### Downloading Library
-- You can use the pre-built driver package that is included with the driver
+- You can use the pre-built library files that are included with the driver
 - Or, you can download the latest library version from
 [Github releases](https://github.com/commtech/cfscc/releases).
 
@@ -14,7 +14,7 @@ This README file is best viewed [online](http://github.com/commtech/cfscc/).
 Lets get started with a quick programming example for fun.
 
 _This tutorial has already been set up for you at_ 
-[`examples/tutorial/`](https://github.com/commtech/cfscc/tree/master/examples/tutorial).
+[`examples/tutorial.c`](https://github.com/commtech/cfscc/tree/master/examples/tutorial.c).
 
 First, drop `cfscc.dll` and `cfscc.lib` into a test directory. Now that those files are 
 copied over, create a new C file (named tutorial.c) with the following code.
@@ -57,7 +57,7 @@ For this example I will use the Visual Studio command line compiler, but
 you can use your compiler of choice.
 
 ```
-# cl /W4 /MT tutorial.c cfscc.lib /I ../../src/
+# cl tutorial.c cfscc.lib /I <CFSCC_DIR>\src\
 ```
 
 Now attach the included loopback connector.

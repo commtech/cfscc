@@ -7,7 +7,7 @@ int main(void)
 
 	fscc_connect(0, 0, &h);
 
-	fscc_get_append_status(h, &status);
+    fscc_get_append_status(h, &status);
 
 	fscc_enable_append_status(h);
 	fscc_disable_append_status(h);
