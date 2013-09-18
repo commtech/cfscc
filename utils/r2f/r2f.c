@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     }
 
     //12 Mhz seems to be the cutoff
-    e = fscc_set_clock_frequency(h, 10000000, 2);
+    e = fscc_set_clock_frequency(h, 18432000, 2);
     if (e != 0) {
         fscc_disconnect(h);
         fprintf(stderr, "fscc_set_clock_frequency failed with %d\n", e);

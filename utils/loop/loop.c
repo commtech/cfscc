@@ -157,7 +157,7 @@ int init(HANDLE h)
         return EXIT_FAILURE;
     }
 
-    e = fscc_set_clock_frequency(h, 1000000);
+    e = fscc_set_clock_frequency(h, 18432000);
     if (e != 0) {
         fprintf(stderr, "fscc_set_clock_frequency failed with %d\n", e);
         return EXIT_FAILURE;
