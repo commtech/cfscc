@@ -90,10 +90,6 @@ own program. All of these options are described on their respective documentatio
 - [Disconnect](https://github.com/commtech/cfscc/blob/master/docs/disconnect.md)
 
 
-## Dependencies
-TODO
-
-
 ## API Compatibility
 We follow [Semantic Versioning](http://semver.org/) when creating releases.
 
