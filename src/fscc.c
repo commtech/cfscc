@@ -37,6 +37,8 @@ int translate_error(int e)
 {
 #ifdef _WIN32
     switch (e) {
+        case ERROR_FILE_NOT_FOUND:
+            return FSCC_PORT_NOT_FOUND;
         case ERROR_SEM_TIMEOUT:
             return FSCC_TIMEOUT;
         case ERROR_INSUFFICIENT_BUFFER:
@@ -46,6 +48,8 @@ int translate_error(int e)
     }
 #else
     switch (e) {
+        case -ENOENT:
+            return FSCC_PORT_NOT_FOUND;
         case -EOPNOTSUPP:
             return FSCC_INCORRECT_MODE;
         case -ETIMEDOUT:
@@ -238,7 +242,7 @@ int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h)
             NULL
     );
 
-    return (*h != INVALID_HANDLE_VALUE) ? 0 : GetLastError();
+    return (*h != INVALID_HANDLE_VALUE) ? 0 : translate_error(GetLastError());
 #else
     UNUSED(overlapped);
 
@@ -246,7 +250,7 @@ int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h)
 
     *h = open(name, O_RDWR);
 
-    return (*h != -1) ? 0 : errno;
+    return (*h != -1) ? 0 : translate_error(errno);
 #endif
 }
 
