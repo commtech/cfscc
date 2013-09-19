@@ -168,7 +168,7 @@ typedef int fscc_handle;
 #define DLL_EXPORT
 #endif
 
-DLL_EXPORT int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h);
+DLL_EXPORT int fscc_connect(unsigned port_num, fscc_handle *h);
 DLL_EXPORT int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers);
 DLL_EXPORT int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers);
 DLL_EXPORT int fscc_set_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap);
@@ -189,7 +189,9 @@ DLL_EXPORT int fscc_enable_rx_multiple(fscc_handle h);
 DLL_EXPORT int fscc_disable_rx_multiple(fscc_handle h);
 DLL_EXPORT int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
 DLL_EXPORT int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
+DLL_EXPORT int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written);
 DLL_EXPORT int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVERLAPPED *o);
+DLL_EXPORT int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written);
 DLL_EXPORT int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, unsigned timeout);
 DLL_EXPORT int fscc_disconnect(fscc_handle h);
 DLL_EXPORT int fscc_set_clock_frequency(fscc_handle h, unsigned frequency);

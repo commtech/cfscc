@@ -4,7 +4,7 @@ int main(void)
 {
     fscc_handle h;
 
-    fscc_connect(0, 0, &h);
+    fscc_connect(0, &h);
 
     /* 18.432 Mhz */
     fscc_set_clock_frequency(h, 18432000);

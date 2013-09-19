@@ -5,7 +5,7 @@ int main(void)
     fscc_handle h;
     unsigned status;
 
-    fscc_connect(0, 0, &h);
+    fscc_connect(0, &h);
 
     fscc_get_ignore_timeout(h, &status);
 
