@@ -5,7 +5,7 @@ int main(void)
     fscc_handle h;
     struct fscc_memory_cap memcap;
 
-    fscc_connect(0, 0, &h);
+    fscc_connect(0, &h);
 
     memcap.input = 1000000; /* 1 MB */
     memcap.output = 2000000; /* 2 MB */

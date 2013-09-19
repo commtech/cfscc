@@ -221,31 +221,24 @@ int ioctl_getset_pointer(fscc_handle h, int ioctl_name, void *value,
 #endif
 }
 
-int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h)
+int fscc_connect(unsigned port_num, fscc_handle *h)
 {
     char name[MAX_NAME_LENGTH];
 
 #ifdef _WIN32
-    DWORD flags_and_attributes = FILE_ATTRIBUTE_NORMAL;
-
     sprintf_s(name, MAX_NAME_LENGTH, "\\\\.\\FSCC%u", port_num);
-
-    if (overlapped)
-        flags_and_attributes |= FILE_FLAG_OVERLAPPED;
 
     *h = CreateFile(name,
             GENERIC_READ | GENERIC_WRITE,
             FILE_SHARE_READ | FILE_SHARE_WRITE,
             NULL,
             OPEN_EXISTING,
-            flags_and_attributes,
+            FILE_ATTRIBUTE_NORMAL | FILE_FLAG_OVERLAPPED,
             NULL
     );
 
     return (*h != INVALID_HANDLE_VALUE) ? 0 : translate_error(GetLastError());
 #else
-    UNUSED(overlapped);
-
     sprintf(name, "/dev/fscc%u", port_num);
 
     *h = open(name, O_RDWR);
@@ -458,6 +451,30 @@ int fscc_write(fscc_handle h, char *buf, unsigned size,
 #endif
 }
 
+int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size,
+                             unsigned *bytes_written)
+{
+#ifdef _WIN32
+    int result;
+    OVERLAPPED ol;
+
+    memset(&ol, 0, sizeof(ol));
+
+    result = fscc_write(h, buf, size, bytes_written, &ol);
+
+    if (result == 997) {
+        GetOverlappedResult(h, &ol, (DWORD *)bytes_written, 1);
+        result = 0;
+    }
+
+    return result;
+#else
+    fscc_write(h, buf, size, bytes_written);
+
+    return 0;
+#endif
+}
+
 /******************************************************************************/
 /*!
 
@@ -499,6 +516,30 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
         return translate_error(errno);
 
     *bytes_read = result;
+
+    return 0;
+#endif
+}
+
+int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size,
+                            unsigned *bytes_read)
+{
+#ifdef _WIN32
+    int result;
+    OVERLAPPED ol;
+
+    memset(&ol, 0, sizeof(ol));
+
+    result = fscc_read(h, buf, size, bytes_read, &ol);
+
+    if (result == 997) {
+        GetOverlappedResult(h, &ol, (DWORD *)bytes_read, 1);
+        return 0;
+    }
+
+    return result;
+#else
+    fscc_read(h, buf, size, bytes_read);
 
     return 0;
 #endif

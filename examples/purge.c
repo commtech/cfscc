@@ -4,7 +4,7 @@ int main(void)
 {
     fscc_handle h;
 
-    fscc_connect(0, 0, &h);
+    fscc_connect(0, &h);
 
     /* TX */
     fscc_purge(h, 1, 0);

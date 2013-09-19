@@ -5,7 +5,7 @@ int main(void)
     fscc_handle h;
     struct fscc_registers regs;
 
-    fscc_connect(0, 0, &h);
+    fscc_connect(0, &h);
 
     /* Initialize our registers structure */
     FSCC_REGISTERS_INIT(regs);
