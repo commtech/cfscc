@@ -469,7 +469,7 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size,
 
     return result;
 #else
-    fscc_write(h, buf, size, bytes_written);
+    fscc_write(h, buf, size, bytes_written, 0);
 
     return 0;
 #endif
@@ -539,7 +539,7 @@ int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size,
 
     return result;
 #else
-    fscc_read(h, buf, size, bytes_read);
+    fscc_read(h, buf, size, bytes_read, 0);
 
     return 0;
 #endif
