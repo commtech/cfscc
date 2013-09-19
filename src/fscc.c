@@ -23,6 +23,7 @@
 
 #ifndef _WIN32
 #include <unistd.h> /* write, close */
+#include <poll.h>
 #endif
 
 #include "fscc.h"
@@ -616,13 +617,26 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
 
     return 0;
 #else
-    UNUSED(h);
-    UNUSED(buf);
-    UNUSED(size);
-    UNUSED(bytes_read);
-    UNUSED(timeout);
+    struct pollfd fds[1];
+    int e = 0;
 
-    return 0;
+    fds[0].fd = h;
+    fds[0].events = POLLIN;
+
+    switch (poll(fds, 1, timeout)) {
+    case -1:
+        e = errno;
+        break;
+
+    case 0:
+        break;
+
+    default:
+        e = fscc_read_with_blocking(h, buf, size, bytes_read);
+        break;
+    }
+
+    return e;
 #endif
 }
 
