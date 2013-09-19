@@ -151,18 +151,6 @@ struct fscc_memory_cap {
     #define FSCC_GET_APPEND_TIMESTAMP _IOR(FSCC_IOCTL_MAGIC, 21, unsigned *)
 #endif
 
-/******************************************************************************/
-/*!
-
-  Initializes an fscc_registers structure for use in other functions.
-
-  \def FSCC_REGISTERS_INIT(registers)
-
-*/
-/******************************************************************************/
-#define FSCC_REGISTERS_INIT(registers) memset(&registers, -1, sizeof(registers))
-
-#define FSCC_UPDATE_VALUE -2
 
 #ifndef _WIN32
 typedef void OVERLAPPED;
