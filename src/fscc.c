@@ -48,7 +48,7 @@ int translate_error(int e)
     }
 #else
     switch (e) {
-        case -ENOENT:
+        case ENOENT:
             return FSCC_PORT_NOT_FOUND;
         case -EOPNOTSUPP:
             return FSCC_INCORRECT_MODE;
