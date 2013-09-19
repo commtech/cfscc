@@ -14,13 +14,12 @@ if you would like to use the asynchronous functionality.
 
 ## Connect
 ```c
-int fscc_connect(unsigned port_num, unsigned overlapped, fscc_handle *h)
+int fscc_connect(unsigned port_num, fscc_handle *h)
 ```
 
 | Parameter     | Type           | Description
 | ------------ | --------------- | --------------------------------------------
 | `port_num    | `unsigned`      | The port number you would like to connect to
-| `overlapped` | `unsigned int`  | Whether to open port in overlapped IO mode
 | `h`          | `fscc_handle *` | The handle to your port
 
 | Return Value | Cause
@@ -36,7 +35,7 @@ Connect to port 0.
 
 HANDLE h;
 
-fscc_connect(0, 0, &h);
+fscc_connect(0, &h);
 ```
 
 

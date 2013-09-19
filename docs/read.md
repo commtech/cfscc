@@ -92,6 +92,36 @@ unsigned bytes_read;
 
 fscc_read_with_timeout(h, idata, sizeof(idata), &bytes_read, 100);
 ```
+```
+
+
+## Read (Blocking)
+```c
+int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read)
+```
+
+| Parameter    | Type             | Description
+| ------------ | ---------------- | -----------------------
+| `h`          | `fscc_handle`    | The handle to your port
+| `buf`        | `char *`         | The data buffer to hold incoming data
+| `size`       | `unsigned`       | The data buffer size
+| `bytes_read` | `unsigned *`     | How many bytes were returned from the read
+
+| Return Value            | Cause
+| ----------------------- | --------------------------------------------------------------------
+| 0                       | Success
+| `FSCC_BUFFER_TOO_SMALL` | The read size is smaller than the next frame (in a frame based mode)
+
+###### Examples
+```c
+#include <fscc.h>
+...
+
+char idata[20] = {0};
+unsigned bytes_read;
+
+fscc_read_with_blocking(h, idata, sizeof(idata), &bytes_read);
+```
 
 
 ### Additional Resources
