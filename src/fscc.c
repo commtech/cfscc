@@ -345,36 +345,6 @@ int fscc_disable_rx_multiple(fscc_handle h)
                              FSCC_DISABLE_RX_MULTIPLE, 0);
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Clears the transmit and/or receive data out of the card.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] tx
-    whether to clear the transmit data out
-  \param[in] rx
-    whether to clear the receive data out
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-  \note
-    Any pending transmit data will not be transmited upon a purge.
-
-  \note
-    If you receive a ERROR_TIMEOUT you are likely at a speed too slow (~35 Hz)
-        for this driver. You will need to contact Commtech to get a custom driver.
-
-  \snippet purge.c Purge TX
-  \snippet purge.c Purge RX
-  \snippet purge.c Purge both TX & RX
-
-*/
-/******************************************************************************/
 int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 {
     int error;
@@ -405,29 +375,6 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
     return ioctl_set_pointer(h, FSCC_SET_CLOCK_BITS, clock_bits, sizeof(clock_bits));
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Transmits data out of a port.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] buf
-    the buffer containing the data to transmit
-  \param[in] size
-    the number of bytes to transmit from 'buf'
-  \param[out] bytes_written
-    the input variable to store how many bytes were actually written
-  \param[in,out] o
-    OVERLAPPED structure for asynchronous operation
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_write(fscc_handle h, char *buf, unsigned size,
                unsigned *bytes_written, OVERLAPPED *o)
 {
@@ -475,29 +422,6 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size,
 #endif
 }
 
-/******************************************************************************/
-/*!
-
-  \brief Reads data out of a port.
-
-  \param[in] h
-    HANDLE to the port
-  \param[in] buf
-    the input buffer used to store the receive data
-  \param[in] size
-    the maximum number of bytes to read in (typically sizeof(buf))
-  \param[out] bytes_read
-    the user variable to store how many bytes were actually read
-  \param[in,out] o
-    OVERLAPPED structure for asynchronous operation
-
-  \return 0
-    if the operation completed successfully
-  \return >= 1
-    if the operation failed (see MSDN 'System Error Codes')
-
-*/
-/******************************************************************************/
 int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read,
               OVERLAPPED *o)
 {
