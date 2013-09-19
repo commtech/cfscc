@@ -521,10 +521,6 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
                     CloseHandle(o.hEvent);
                     return ERROR_SUCCESS;
 
-            case WAIT_ABANDONED:
-                    CloseHandle(o.hEvent);
-                    return 1; //TODO: READFILE_ABANDONED;
-
             case WAIT_FAILED:
                     e = GetLastError();
                     CloseHandle(o.hEvent);
