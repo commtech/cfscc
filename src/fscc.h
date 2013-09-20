@@ -33,8 +33,6 @@ extern "C"
 #include <sys/ioctl.h>
 #endif
 
-#include <string.h>
-
 #define FSCC_REGISTERS_INIT(regs) memset(&regs, -1, sizeof(regs))
 #define FSCC_MEMORY_CAP_INIT(memcap) memset(&memcap, -1, sizeof(memcap))
 #define FSCC_UPDATE_VALUE -2
