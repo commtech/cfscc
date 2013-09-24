@@ -28,13 +28,13 @@ int main(int argc, char *argv[])
     port_num_2 = atoi(argv[2]);
     reset = (argc == 4) ? atoi(argv[3]) : 1;
 
-    e = fscc_connect(port_num_1, TRUE, &h1);
+    e = fscc_connect(port_num_1, &h1);
     if (e != 0) {
         fprintf(stderr, "fscc_connect failed with %d\n", e);
         return EXIT_FAILURE;
     }
 
-    e = fscc_connect(port_num_2, TRUE, &h2);
+    e = fscc_connect(port_num_2, &h2);
     if (e != 0) {
         fprintf(stderr, "fscc_connect failed with %d\n", e);
         fscc_disconnect(h2);
