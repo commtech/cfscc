@@ -38,6 +38,8 @@ int translate_error(int e)
 {
 #ifdef _WIN32
     switch (e) {
+        case ERROR_ACCESS_DENIED:
+            return FSCC_INVALID_ACCESS;
         case ERROR_FILE_NOT_FOUND:
             return FSCC_PORT_NOT_FOUND;
         case ERROR_SEM_TIMEOUT:
@@ -51,6 +53,8 @@ int translate_error(int e)
     switch (e) {
         case ENOENT:
             return FSCC_PORT_NOT_FOUND;
+        case EACCES:
+            return FSCC_INVALID_ACCESS;
         case -EOPNOTSUPP:
             return FSCC_INCORRECT_MODE;
         case -ETIMEDOUT:
