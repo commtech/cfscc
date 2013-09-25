@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     }
 
     port_num = atoi(argv[1]);
-    e = fscc_connect(port_num, TRUE, &h);
+    e = fscc_connect(port_num, &h);
     if (e != 0) {
         fprintf(stderr, "fscc_connect failed with %d\n", e);
         return EXIT_FAILURE;
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     }
 
     //12 Mhz seems to be the cutoff
-    e = fscc_set_clock_frequency(h, 18432000, 2);
+    e = fscc_set_clock_frequency(h, 1000000);
     if (e != 0) {
         fscc_disconnect(h);
         fprintf(stderr, "fscc_set_clock_frequency failed with %d\n", e);
@@ -100,8 +100,6 @@ int main(int argc, char *argv[])
 
             if (bytes_stored != bytes_read)
                 fprintf(stderr, "error writing to file\n");
-
-            fprintf(stdout, "%i: 0x%02x%02x\n", bytes_read, idata[bytes_read - 2], idata[bytes_read - 1]);
         }
 
         i++;
