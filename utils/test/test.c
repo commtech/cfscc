@@ -1,25 +1,32 @@
-#include <conio.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-#include <Windows.h>
+#ifdef _WIN32
+#include <conio.h>
+#else
+#include <termios.h>
+#include <unistd.h>
+int _getch(void);
+#endif
 
 #include <fscc.h>
 
 #define DATA_LENGTH 20
 #define NUM_ITERATIONS 100
 
-int init(HANDLE h);
-int loop(HANDLE h);
+int init(fscc_handle h);
+int loop(fscc_handle h);
 
 int main(int argc, char *argv[])
 {
-    HANDLE h;
+    fscc_handle h;
     int e = 0;
     unsigned port_num;
     unsigned i = 0;
 
     if (argc != 2) {
-        fprintf(stdout, "%s PORT_NUM", argv[0]);
+        fprintf(stdout, "%s PORT_NUM\n", argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -51,7 +58,7 @@ int main(int argc, char *argv[])
     for (i = 0; i < NUM_ITERATIONS; i++) {
         e = loop(h);
         if (e != 0) {
-            if (e == ERROR_INVALID_DATA) {
+            if (e == -1) {
                 break;
             }
             else {
@@ -61,17 +68,17 @@ int main(int argc, char *argv[])
         }
     }
 
-    if (e != ERROR_INVALID_DATA)
-        fprintf(stdout, "Passed, you can begin development.");
+    if (e != -1)
+        fprintf(stdout, "Passed, you can begin development.\n");
     else
-        fprintf(stderr, "Failed, contact technical support.");
+        fprintf(stderr, "Failed, contact technical support.\n");
 
     fscc_disconnect(h);
 
     return EXIT_SUCCESS;
 }
 
-int init(HANDLE h)
+int init(fscc_handle h)
 {
     struct fscc_registers r;
     struct fscc_memory_cap m;
@@ -103,7 +110,7 @@ int init(HANDLE h)
         fprintf(stderr, "fscc_disable_append_timestamp failed with %d\n", e);
         return EXIT_FAILURE;
     }
-    
+
     e = fscc_set_tx_modifiers(h, XF);
     if (e != 0) {
         fprintf(stderr, "fscc_set_tx_modifiers failed with %d\n", e);
@@ -147,45 +154,56 @@ int init(HANDLE h)
         return EXIT_FAILURE;
     }
 
-    e = fscc_purge(h, TRUE, TRUE);
+    e = fscc_purge(h, 1, 1);
     if (e != 0) {
         fprintf(stderr, "fscc_purge failed with %d\n", e);
         return EXIT_FAILURE;
     }
 
-    return ERROR_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
-int loop(HANDLE h)
+int loop(fscc_handle h)
 {
     unsigned bytes_written = 0, bytes_read = 0;
     char odata[DATA_LENGTH];
     char idata[100];
     int e = 0;
-    OVERLAPPED o;
 
-    memset(&o, 0, sizeof(o));
     memset(odata, 0x01, sizeof(odata));
     memset(&idata, 0, sizeof(idata));
 
-    e = fscc_write(h, odata, sizeof(odata), &bytes_written, &o);
-    if (e != 0 && e != ERROR_IO_PENDING) {
-        fprintf(stderr, "fscc_write failed with %d\n", e);
+    e = fscc_write_with_blocking(h, odata, sizeof(odata), &bytes_written);
+    if (e != 0) {
+        fprintf(stderr, "fscc_write_with_blocking failed with %d\n", e);
         return EXIT_FAILURE;
     }
-
-    e = GetOverlappedResult(h, &o, (DWORD*)&bytes_written, TRUE);
-    if (e == FALSE)
-        return EXIT_FAILURE;
 
     e = fscc_read_with_timeout(h, idata, sizeof(idata), &bytes_read, 1000);
     if (e != 0) {
         fprintf(stderr, "fscc_read_with_timeout failed with %d\n", e);
         return EXIT_FAILURE;
     }
-    
-    if (bytes_read == 0 || memcmp(odata, idata, sizeof(odata)) != 0)
-        return ERROR_INVALID_DATA;
 
-    return ERROR_SUCCESS;
+    if (bytes_read == 0 || memcmp(odata, idata, sizeof(odata)) != 0)
+        return -1;
+
+    return EXIT_SUCCESS;
 }
+
+#ifndef _WIN32
+/* reads from keypress, doesn't echo */
+int _getch(void)
+{
+    struct termios oldattr, newattr;
+    int ch;
+
+    tcgetattr(STDIN_FILENO, &oldattr);
+    newattr = oldattr;
+    newattr.c_lflag &= ~(ICANON | ECHO);
+    tcsetattr(STDIN_FILENO, TCSANOW, &newattr);
+    ch = getchar();
+    tcsetattr(STDIN_FILENO, TCSANOW, &oldattr);
+    return ch;
+}
+#endif
