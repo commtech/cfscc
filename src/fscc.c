@@ -518,18 +518,18 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
 
             switch (status) {
             case WAIT_TIMEOUT:
-                    *bytes_read = 0;
-                    /* Switch to CancelIoEx if using Vista or higher and prefer the
-                       way CancelIoEx operates. */
-                    /* CancelIoEx(h, &o); */
-                    CancelIo(h);
-                    CloseHandle(o.hEvent);
-                    return ERROR_SUCCESS;
+                *bytes_read = 0;
+                /* Switch to CancelIoEx if using Vista or higher and prefer the
+                   way CancelIoEx operates. */
+                /* CancelIoEx(h, &o); */
+                CancelIo(h);
+                CloseHandle(o.hEvent);
+                return ERROR_SUCCESS;
 
             case WAIT_FAILED:
-                    e = GetLastError();
-                    CloseHandle(o.hEvent);
-                    return e;
+                e = GetLastError();
+                CloseHandle(o.hEvent);
+                return e;
             }
         }
         while (status != WAIT_OBJECT_0);
