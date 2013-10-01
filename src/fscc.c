@@ -131,7 +131,7 @@ int ioctl_set_integer(fscc_handle h, int ioctl_name, int value)
 
     return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
-    result = ioctl(h, ioctl_name, &value);
+    result = ioctl(h, ioctl_name, value);
 
     return (result != -1) ? 0 : translate_error(errno);
 #endif
