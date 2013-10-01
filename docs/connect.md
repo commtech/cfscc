@@ -22,9 +22,11 @@ int fscc_connect(unsigned port_num, fscc_handle *h)
 | `port_num    | `unsigned`      | The port number you would like to connect to
 | `h`          | `fscc_handle *` | The handle to your port
 
-| Return Value | Cause
-| ------------ | -------
-| 0            | Success
+| Return Value        | Cause
+| ------------------- | -----------------------
+| 0                   | Success
+| FSCC_PORT_NOT_FOUND | Port not found
+| FSCC_INVALID_ACCESS | Insufficient permisions
 
 ###### Examples
 Connect to port 0.
