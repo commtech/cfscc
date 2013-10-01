@@ -48,9 +48,9 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVE
 | `o`          | `OVERLAPPED *`   | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx)
 
 | Return Value            | Cause
-| ----------------------- | --------------------------------------------------------------------
+| ----------------------- | ----------------------------------------------
 | 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The read size is smaller than the next frame (in a frame based mode)
+| `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
 
 ###### Examples
 ```c
@@ -78,9 +78,9 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *by
 | `timeout`    | `unsigned`       | Number of milliseconds to wait for data before timing out
 
 | Return Value            | Cause
-| ----------------------- | --------------------------------------------------------------------
+| ----------------------- | ----------------------------------------------
 | 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The read size is smaller than the next frame (in a frame based mode)
+| `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
 
 ###### Examples
 ```c
@@ -108,9 +108,9 @@ int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *b
 | `bytes_read` | `unsigned *`     | How many bytes were returned from the read
 
 | Return Value            | Cause
-| ----------------------- | --------------------------------------------------------------------
+| ----------------------- | ----------------------------------------------
 | 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The read size is smaller than the next frame (in a frame based mode)
+| `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
 
 ###### Examples
 ```c

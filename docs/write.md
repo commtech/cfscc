@@ -23,10 +23,10 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 | `o`          | `OVERLAPPED *`   | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx)
 
 | Return Value            | Cause
-| ----------------------- | ------------------------------------------------------------------
+| ----------------------- | --------------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
-| `FSCC_TIMEOUT`          | You are executing a command that requires a transmit clock present
+| `FSCC_TIMEOUT`          | Command timed out (missing clock)
 
 ###### Examples
 ```c
@@ -53,10 +53,10 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *
 | `bytes_read` | `unsigned *`     | How many bytes were written to the read
 
 | Return Value            | Cause
-| ----------------------- | ------------------------------------------------------------------
+| ----------------------- | --------------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
-| `FSCC_TIMEOUT`          | You are executing a command that requires a transmit clock present
+| `FSCC_TIMEOUT`          | Command timed out (missing clock)
 
 ###### Examples
 ```c

@@ -25,7 +25,7 @@ fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 | Return Value   | Cause
 | -------------- | ------------------------------------------------------------------
 | 0              | Success
-| `FSCC_TIMEOUT` | You are executing a command that requires a transmit clock present
+| `FSCC_TIMEOUT` | Command timed out (missing clock)
 
 ###### Examples
 Purge both the transmit and receive data.
