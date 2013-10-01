@@ -1,8 +1,14 @@
-#include <conio.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <time.h>
 
-#include <Windows.h>
+#ifdef _WIN32
+#include <conio.h>
+#else
+#include <termios.h>
+int _kbhit(void);
+#endif
 
 #include <fscc.h>
 
@@ -10,7 +16,7 @@
 
 int main(int argc, char *argv[])
 {
-    HANDLE h;
+    fscc_handle h;
     struct fscc_registers r;
     char idata[DATA_LENGTH];
     unsigned bytes_stored = 0;
@@ -20,12 +26,14 @@ int main(int argc, char *argv[])
     unsigned port_num = 0;
     FILE *file;
     unsigned i = 0;
+#ifdef _WIN32
     clock_t tstart, tend;
     float tdiff;
     double bps = 0;
+#endif
 
     if (argc == 1) {
-        fprintf(stdout, "%s PORT_NUM", argv[0]);
+        fprintf(stdout, "%s PORT_NUM\n", argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -56,7 +64,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    //12 Mhz seems to be the cutoff
+    /* 12 Mhz seems to be the cutoff */
     e = fscc_set_clock_frequency(h, 1000000);
     if (e != 0) {
         fscc_disconnect(h);
@@ -71,14 +79,16 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    e = fscc_purge(h, FALSE, TRUE);
+    e = fscc_purge(h, 0, 1);
     if (e != 0) {
         fscc_disconnect(h);
         fprintf(stderr, "fscc_purge failed with %d\n", e);
         return EXIT_FAILURE;
     }
 
+#ifdef _WIN32
     tstart = clock();
+#endif
 
     fprintf(stdout, "Press any key to stop collecting data...\n");
 
@@ -105,6 +115,7 @@ int main(int argc, char *argv[])
         i++;
     }
 
+#ifdef _WIN32
     tend = clock();
     tdiff = (float)(tend - tstart) / CLOCKS_PER_SEC;
     bps = (double)(total_bytes_read * 8) / tdiff;
@@ -117,6 +128,9 @@ int main(int argc, char *argv[])
         fprintf(stdout, "(~%.2f KHz)\n", bps / 1000);
     else
         fprintf(stdout, "(~%.2f Hz)\n", bps);
+#else
+    fprintf(stdout, "Read %i bytes of data\n", total_bytes_read);
+#endif
 
     FSCC_REGISTERS_INIT(r);
     r.BGR = 0;
@@ -131,7 +145,7 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
-    e = fscc_purge(h, FALSE, TRUE);
+    e = fscc_purge(h, 0, 1);
     if (e != 0) {
         fscc_disconnect(h);
         fprintf(stderr, "fscc_purge failed with %d\n", e);
@@ -143,3 +157,24 @@ int main(int argc, char *argv[])
 
     return EXIT_SUCCESS;
 }
+
+#ifndef _WIN32
+int _kbhit(void) {
+    static const int STDIN = 0;
+    static unsigned initialized = 0;
+    int bytes_waiting;
+
+    if (!initialized) {
+        /* Use termios to turn off line buffering */
+        struct termios term;
+        tcgetattr(STDIN, &term);
+        term.c_lflag &= ~ICANON;
+        tcsetattr(STDIN, TCSANOW, &term);
+        setbuf(stdin, NULL);
+        initialized = 1;
+    }
+
+    ioctl(STDIN, FIONREAD, &bytes_waiting);
+    return bytes_waiting;
+}
+#endif
