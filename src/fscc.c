@@ -55,7 +55,7 @@ int translate_error(int e)
             return FSCC_PORT_NOT_FOUND;
         case EACCES:
             return FSCC_INVALID_ACCESS;
-        case -EOPNOTSUPP:
+        case EOPNOTSUPP:
             return FSCC_INCORRECT_MODE;
         case ETIMEDOUT:
             return FSCC_TIMEOUT;
