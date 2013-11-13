@@ -57,7 +57,7 @@ int translate_error(int e)
             return FSCC_INVALID_ACCESS;
         case -EOPNOTSUPP:
             return FSCC_INCORRECT_MODE;
-        case -ETIMEDOUT:
+        case ETIMEDOUT:
             return FSCC_TIMEOUT;
         case -ENOBUFS:
             return FSCC_BUFFER_TOO_SMALL;
