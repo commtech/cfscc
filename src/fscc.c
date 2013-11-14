@@ -414,12 +414,10 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size,
 
     result = fscc_write(h, buf, size, bytes_written, &ol);
 
-    if (result == 997) {
-        GetOverlappedResult(h, &ol, (DWORD *)bytes_written, 1);
-        result = 0;
-    }
+    if (result == 997)
+        result = GetOverlappedResult(h, &ol, (DWORD *)bytes_written, 1);
 
-    return result;
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     return fscc_write(h, buf, size, bytes_written, 0);
 #endif
@@ -459,12 +457,10 @@ int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size,
 
     result = fscc_read(h, buf, size, bytes_read, &ol);
 
-    if (result == 997) {
-        GetOverlappedResult(h, &ol, (DWORD *)bytes_read, 1);
-        return 0;
-    }
+    if (result == 997)
+        result = GetOverlappedResult(h, &ol, (DWORD *)bytes_read, 1);
 
-    return result;
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     return fscc_read(h, buf, size, bytes_read, 0);
 #endif
@@ -530,12 +526,12 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
         }
         while (status != WAIT_OBJECT_0);
 
-        GetOverlappedResult(h, &o, (DWORD *)bytes_read, TRUE);
+        result = GetOverlappedResult(h, &o, (DWORD *)bytes_read, TRUE);
     }
 
     CloseHandle(o.hEvent);
 
-    return 0;
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     struct pollfd fds[1];
     int e = 0;
