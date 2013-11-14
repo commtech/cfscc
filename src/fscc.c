@@ -526,12 +526,12 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size,
         }
         while (status != WAIT_OBJECT_0);
 
-        GetOverlappedResult(h, &o, (DWORD *)bytes_read, TRUE);
+        result = GetOverlappedResult(h, &o, (DWORD *)bytes_read, TRUE);
     }
 
     CloseHandle(o.hEvent);
 
-    return 0;
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
     struct pollfd fds[1];
     int e = 0;
