@@ -59,7 +59,7 @@ int translate_error(int e)
             return FSCC_INCORRECT_MODE;
         case ETIMEDOUT:
             return FSCC_TIMEOUT;
-        case -ENOBUFS:
+        case ENOBUFS:
             return FSCC_BUFFER_TOO_SMALL;
     default:
         return e;
