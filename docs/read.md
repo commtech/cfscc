@@ -82,6 +82,7 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *by
 | ----------------------- | ----------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
+| `FSCC_INCORRECT_MODE`   | Using the /dev/fsccX node while in asynchronous mode
 
 ###### Examples
 ```c
@@ -112,6 +113,7 @@ int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *b
 | ----------------------- | ----------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
+| `FSCC_INCORRECT_MODE`   | Using the /dev/fsccX node while in asynchronous mode
 
 ###### Examples
 ```c
