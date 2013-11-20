@@ -27,7 +27,7 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
 | `FSCC_TIMEOUT`          | Command timed out (missing clock)
-| `FSCC_INCORRECT_MODE`   | Using the /dev/fsccX node while in asynchronous mode
+| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c
@@ -58,7 +58,7 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
 | `FSCC_TIMEOUT`          | Command timed out (missing clock)
-| `FSCC_INCORRECT_MODE`   | Using the /dev/fsccX node while in asynchronous mode
+| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c
