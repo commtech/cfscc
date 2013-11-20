@@ -23,10 +23,11 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 | `o`          | `OVERLAPPED *`   | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx)
 
 | Return Value            | Cause
-| ----------------------- | --------------------------------------------------
+| ----------------------- | ----------------------------------------------------
 | 0                       | Success
 | `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
 | `FSCC_TIMEOUT`          | Command timed out (missing clock)
+| `FSCC_INCORRECT_MODE`   | Using the /dev/fsccX node while in asynchronous mode
 
 ###### Examples
 ```c
