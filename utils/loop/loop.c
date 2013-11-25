@@ -186,7 +186,7 @@ int loop(fscc_handle h1, fscc_handle h2)
     char idata[100];
     int e = 0;
 
-    memset(odata, 0x01, sizeof(odata));
+    memset(&odata, 0x01, sizeof(odata));
     memset(&idata, 0, sizeof(idata));
 
     e = fscc_write_with_blocking(h1, odata, sizeof(odata), &bytes_written);
