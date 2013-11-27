@@ -20,7 +20,7 @@ int fscc_get_rx_multiple(fscc_handle h, unsigned *status)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c
@@ -44,7 +44,7 @@ int fscc_enable_rx_multiple(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c
@@ -66,7 +66,7 @@ int fscc_disable_rx_multiple(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c

@@ -24,7 +24,7 @@ fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 
 | Return Value   | Value | Cause
 | -------------- | ----- | ------------------------------------------------------------------
-| 0              | 0     | Success
+| `0`            | `0`   | Success
 | `FSCC_TIMEOUT` | 16000 | Command timed out (missing clock)
 
 ###### Examples

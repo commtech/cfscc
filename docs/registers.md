@@ -92,7 +92,7 @@ int fscc_set_registers(fscc_handle h, struct fscc_registers *regs)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```
@@ -122,7 +122,7 @@ int fscc_get_registers(fscc_handle h, struct fscc_registers *regs)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```

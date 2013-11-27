@@ -20,7 +20,7 @@ int fscc_get_ignore_timeout(fscc_handle h, unsigned *status)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`            | Success
 
 
 ###### Examples
@@ -45,7 +45,7 @@ int fscc_enable_ignore_timeout(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c
@@ -67,7 +67,7 @@ int fscc_disable_ignore_timeout(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c

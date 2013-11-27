@@ -32,7 +32,7 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 
 ###### Examples

@@ -24,7 +24,7 @@ int fscc_get_tx_modifiers(fscc_handle h, unsigned *modifiers)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```
@@ -49,7 +49,7 @@ int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```

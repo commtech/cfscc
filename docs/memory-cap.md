@@ -47,7 +47,7 @@ int fscc_get_memory_cap(fscc_handle h, const struct fscc_memory_cap *memcap)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```
@@ -77,7 +77,7 @@ int fscc_set_memory_cap(fscc_handle h, struct fscc_memory_cap *memcap)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```

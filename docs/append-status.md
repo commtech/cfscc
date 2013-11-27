@@ -27,7 +27,7 @@ int fscc_get_append_status(fscc_handle h, unsigned *status)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c
@@ -51,7 +51,7 @@ int fscc_enable_append_status(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c
@@ -73,7 +73,7 @@ int fscc_disable_append_status(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 
 ###### Examples

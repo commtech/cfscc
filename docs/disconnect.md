@@ -20,7 +20,7 @@ int fscc_disconnect(fscc_handle h)
 
 | Return Value | Cause
 | ------------ | -------
-| 0            | Success
+| `0`          | Success
 
 ###### Examples
 ```c
