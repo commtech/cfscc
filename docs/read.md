@@ -47,11 +47,11 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVE
 | `bytes_read` | `unsigned *`     | How many bytes were returned from the read
 | `o`          | `OVERLAPPED *`   | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx)
 
-| Return Value            | Cause
-| ----------------------- | ----------------------------------------------------
-| 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
-| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
+| Return Value            | Value | Cause
+| ----------------------- | ----- | ----------------------------------------------------
+| 0                       | 0     | Success
+| `FSCC_BUFFER_TOO_SMALL` | 16002 | The buffer size is smaller than the next frame
+| `FSCC_INCORRECT_MODE`   | 16001 | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c
@@ -78,11 +78,11 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *by
 | `bytes_read` | `unsigned *`     | How many bytes were returned from the read
 | `timeout`    | `unsigned`       | Number of milliseconds to wait for data before timing out
 
-| Return Value            | Cause
-| ----------------------- | ----------------------------------------------
-| 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
-| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
+| Return Value            | Value | Cause
+| ----------------------- | ----- | ----------------------------------------------------
+| 0                       | 0     | Success
+| `FSCC_BUFFER_TOO_SMALL` | 16002 | The buffer size is smaller than the next frame
+| `FSCC_INCORRECT_MODE`   | 16001 | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c
@@ -109,11 +109,11 @@ int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *b
 | `size`       | `unsigned`       | The data buffer size
 | `bytes_read` | `unsigned *`     | How many bytes were returned from the read
 
-| Return Value            | Cause
-| ----------------------- | ----------------------------------------------
-| 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The buffer size is smaller than the next frame
-| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
+| Return Value            | Value | Cause
+| ----------------------- | ----- | ----------------------------------------------------
+| 0                       | 0     | Success
+| `FSCC_BUFFER_TOO_SMALL` | 16002 | The buffer size is smaller than the next frame
+| `FSCC_INCORRECT_MODE`   | 16001 | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c

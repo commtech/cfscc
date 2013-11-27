@@ -22,12 +22,12 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 | `bytes_read` | `unsigned *`     | How many bytes were written to the read
 | `o`          | `OVERLAPPED *`   | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx)
 
-| Return Value            | Cause
-| ----------------------- | ----------------------------------------------------
-| 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
-| `FSCC_TIMEOUT`          | Command timed out (missing clock)
-| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
+| Return Value            | Value | Cause
+| ----------------------- | ----- | ----------------------------------------------------
+| 0                       | 0     | Success
+| `FSCC_BUFFER_TOO_SMALL` | 16002 | The write size exceeds the output memory usage cap
+| `FSCC_TIMEOUT`          | 16000 | Command timed out (missing clock)
+| `FSCC_INCORRECT_MODE`   | 16001 | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c
@@ -53,12 +53,12 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *
 | `size`       | `unsigned`       | The number of bytes to transmit
 | `bytes_read` | `unsigned *`     | How many bytes were written to the read
 
-| Return Value            | Cause
-| ----------------------- | --------------------------------------------------
-| 0                       | Success
-| `FSCC_BUFFER_TOO_SMALL` | The write size exceeds the output memory usage cap
-| `FSCC_TIMEOUT`          | Command timed out (missing clock)
-| `FSCC_INCORRECT_MODE`   | Using the synchronous port while in asynchronous mode
+| Return Value            | Value |  Cause
+| ----------------------- | ----- |  --------------------------------------------------
+| 0                       | 0     | Success
+| `FSCC_BUFFER_TOO_SMALL` | 16002 | The write size exceeds the output memory usage cap
+| `FSCC_TIMEOUT`          | 16000 | Command timed out (missing clock)
+| `FSCC_INCORRECT_MODE`   | 16001 | Using the synchronous port while in asynchronous mode
 
 ###### Examples
 ```c

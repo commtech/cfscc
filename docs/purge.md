@@ -22,10 +22,10 @@ fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 | `tx`      | `unsigned int` | Whether to purge the transmit data
 | `rx`      | `unsigned int` | Whether to purge the receive data
 
-| Return Value   | Cause
-| -------------- | ------------------------------------------------------------------
-| 0              | Success
-| `FSCC_TIMEOUT` | Command timed out (missing clock)
+| Return Value   | Value | Cause
+| -------------- | ----- | ------------------------------------------------------------------
+| 0              | 0     | Success
+| `FSCC_TIMEOUT` | 16000 | Command timed out (missing clock)
 
 ###### Examples
 Purge both the transmit and receive data.
