@@ -56,7 +56,7 @@ int fscc_set_tx_modifiers(fscc_handle h, unsigned modifiers)
 #include <fscc.h>
 ...
 
-fscc_set_tx_modifiers(h, XF | XREP);
+fscc_set_tx_modifiers(h, TXT | XREP);
 ```
 
 
