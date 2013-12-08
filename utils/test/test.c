@@ -34,7 +34,15 @@ int main(int argc, char *argv[])
 
     e = fscc_connect(port_num, &h);
     if (e != 0) {
-        fprintf(stderr, "fscc_connect failed with %d\n", e);
+        switch (e) {
+        case FSCC_PORT_NOT_FOUND:
+            fprintf(stderr, "Port %i wasn't found.\n", port_num);
+            break;
+
+        default:
+            fprintf(stderr, "fscc_connect failed with %d\n", e);
+        }
+
         return EXIT_FAILURE;
     }
 
