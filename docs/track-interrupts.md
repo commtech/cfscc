@@ -1,6 +1,5 @@
 # Append Timestamp
 
-###### Windows
 
 ###### Support
 | Code           | Version
