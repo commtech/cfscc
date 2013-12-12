@@ -193,6 +193,7 @@ DLL_EXPORT int fscc_enable_rx_multiple(fscc_handle h);
 DLL_EXPORT int fscc_disable_rx_multiple(fscc_handle h);
 DLL_EXPORT int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o);
 DLL_EXPORT int fscc_track_interrupts_with_blocking(fscc_handle h, unsigned interrupts, unsigned *matches);
+DLL_EXPORT int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsigned *matches, unsigned timeout);
 DLL_EXPORT int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
 DLL_EXPORT int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
 DLL_EXPORT int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written);

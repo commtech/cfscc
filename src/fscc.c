@@ -388,6 +388,64 @@ int fscc_track_interrupts_with_blocking(fscc_handle h, unsigned interrupts, unsi
 #endif
 }
 
+int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsigned *matches, unsigned timeout)
+{
+#ifdef _WIN32
+    OVERLAPPED o;
+    BOOL result;
+    unsigned bytes_transferred = 0;
+
+    memset(&o, 0, sizeof(o));
+
+    o.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+
+    if (o.hEvent == NULL)
+        return GetLastError();
+
+    result = fscc_track_interrupts(h, interrupts, matches, &o);
+
+    if (result == FALSE) {
+        DWORD status;
+        int e;
+
+        /* There was an actual error instead of a pending read */
+        if ((e = GetLastError()) != ERROR_IO_PENDING) {
+            CloseHandle(o.hEvent);
+            return e;
+        }
+
+        do {
+            status = WaitForSingleObject(o.hEvent, timeout);
+
+            switch (status) {
+            case WAIT_TIMEOUT:
+                bytes_transferred = 0;
+                /* Switch to CancelIoEx if using Vista or higher and prefer the
+                   way CancelIoEx operates. */
+                /* CancelIoEx(h, &o); */
+                CancelIo(h);
+                CloseHandle(o.hEvent);
+                return ERROR_SUCCESS;
+
+            case WAIT_FAILED:
+                e = GetLastError();
+                CloseHandle(o.hEvent);
+                return e;
+            }
+        }
+        while (status != WAIT_OBJECT_0);
+
+        result = GetOverlappedResult(h, &o, (DWORD *)&bytes_transferred, TRUE);
+    }
+
+    CloseHandle(o.hEvent);
+
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
+#else
+    return fscc_track_interrupts(h, interrupts, matches, NULL);
+#endif
+}
+
 int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 {
     int error;
