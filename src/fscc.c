@@ -350,6 +350,44 @@ int fscc_disable_rx_multiple(fscc_handle h)
                              FSCC_DISABLE_RX_MULTIPLE, 0);
 }
 
+int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o)
+{
+    int result;
+
+#ifdef _WIN32
+    DWORD temp;
+
+    result = DeviceIoControl(h, (DWORD)FSCC_TRACK_INTERRUPTS,
+                             &interrupts, sizeof(interrupts),
+                             matches, sizeof(*matches),
+                             &temp, o);
+
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
+#else
+    return 0;
+#endif
+}
+
+int fscc_track_interrupts_with_blocking(fscc_handle h, unsigned interrupts, unsigned *matches)
+{
+#ifdef _WIN32
+    int result;
+    OVERLAPPED ol;
+    unsigned bytes_transferred = 0;
+
+    memset(&ol, 0, sizeof(ol));
+
+    result = fscc_track_interrupts(h, interrupts, matches, &ol);
+
+    if (result == 997)
+        result = GetOverlappedResult(h, &ol, (DWORD *)&bytes_transferred, 1);
+
+    return (result == TRUE) ? 0 : translate_error(GetLastError());
+#else
+    return fscc_track_interrupts(h, interrupts, matches, NULL);
+#endif
+}
+
 int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 {
     int error;

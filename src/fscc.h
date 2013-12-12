@@ -120,6 +120,8 @@ struct fscc_memory_cap {
     #define FSCC_ENABLE_APPEND_TIMESTAMP CTL_CODE(FSCC_IOCTL_MAGIC, 0x813, METHOD_BUFFERED, FILE_ANY_ACCESS)
     #define FSCC_DISABLE_APPEND_TIMESTAMP CTL_CODE(FSCC_IOCTL_MAGIC, 0x814, METHOD_BUFFERED, FILE_ANY_ACCESS)
     #define FSCC_GET_APPEND_TIMESTAMP CTL_CODE(FSCC_IOCTL_MAGIC, 0x815, METHOD_BUFFERED, FILE_ANY_ACCESS)
+
+    #define FSCC_TRACK_INTERRUPTS CTL_CODE(FSCC_IOCTL_MAGIC, 0x819, METHOD_BUFFERED, FILE_ANY_ACCESS)
 #else
     #define FSCC_IOCTL_MAGIC 0x18
     #define FSCC_GET_REGISTERS _IOR(FSCC_IOCTL_MAGIC, 0, struct fscc_registers *)
@@ -189,6 +191,8 @@ DLL_EXPORT int fscc_disable_ignore_timeout(fscc_handle h);
 DLL_EXPORT int fscc_get_rx_multiple(fscc_handle h, unsigned *status);
 DLL_EXPORT int fscc_enable_rx_multiple(fscc_handle h);
 DLL_EXPORT int fscc_disable_rx_multiple(fscc_handle h);
+DLL_EXPORT int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o);
+DLL_EXPORT int fscc_track_interrupts_with_blocking(fscc_handle h, unsigned interrupts, unsigned *matches);
 DLL_EXPORT int fscc_purge(fscc_handle h, unsigned tx, unsigned rx);
 DLL_EXPORT int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o);
 DLL_EXPORT int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written);
