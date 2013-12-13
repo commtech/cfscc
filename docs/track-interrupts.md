@@ -10,7 +10,7 @@
 
 ## Track Interrupts (Overlapped)
 ```c
-int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o);
+int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o)
 ```
 
 | Parameter    | Type           | Description
@@ -38,7 +38,7 @@ fscc_track_interrupts(h, 0x00000100, &matches, NULL);
 
 ## Track Interrupts (Blocking)
 ```c
-int fscc_track_interrupts_with_blocking(fscc_handle h, unsigned interrupts, unsigned *matches);
+int fscc_track_interrupts_with_blocking(fscc_handle h, unsigned interrupts, unsigned *matches)
 ```
 
 | Parameter    | Type           | Description
@@ -65,7 +65,7 @@ fscc_track_interrupts_with_blocking(h, 0x00000100, &matches);
 
 ## Track Interrupts (Timeout)
 ```c
-int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsigned *matches, unsigned timeout);
+int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsigned *matches, unsigned timeout)
 ```
 
 | Parameter    | Type          | Description
