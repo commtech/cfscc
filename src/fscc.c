@@ -394,6 +394,7 @@ int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsig
     OVERLAPPED o;
     BOOL result;
     unsigned bytes_transferred = 0;
+    DWORD temp;
 
     memset(&o, 0, sizeof(o));
 
@@ -402,7 +403,10 @@ int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsig
     if (o.hEvent == NULL)
         return GetLastError();
 
-    result = fscc_track_interrupts(h, interrupts, matches, &o);
+    result = DeviceIoControl(h, (DWORD)FSCC_TRACK_INTERRUPTS,
+                             &interrupts, sizeof(interrupts),
+                             matches, sizeof(*matches),
+                             &temp, &o);
 
     if (result == FALSE) {
         DWORD status;
