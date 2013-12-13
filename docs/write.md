@@ -9,7 +9,7 @@
 | `cfscc`        | `v1.0.0`
 
 
-## Write
+## Write (Overlapped)
 ```c
 int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written, OVERLAPPED *o)
 ```
@@ -41,7 +41,7 @@ fscc_write(h, odata, sizeof(odata), &bytes_written, NULL);
 ```
 
 
-## Write
+## Write (Blocking)
 ```c
 int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written)
 ```
