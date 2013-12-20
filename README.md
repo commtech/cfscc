@@ -91,6 +91,15 @@ own program. All of these options are described on their respective documentatio
 - [Disconnect](https://github.com/commtech/cfscc/blob/master/docs/disconnect.md)
 
 
+## Visual Studio Integration
+The process for using the library will differ slighly depending on the version of Visual Studio.
+
+1. Configuration Properties -> C/C++ -> General = fscc\bin\fscc\lib\fscc\c (path to .h file)
+2. Configuration Properties -> Linker -> General = fscc\bin\fscc\lib\fscc\c (path to .lib file)
+3. Configuration Properties -> Linker -> Input -> Additional Dependencies = cfscc.lib
+4. Place cfscc.dll into the same folder as your executable
+
+
 ## API Compatibility
 We follow [Semantic Versioning](http://semver.org/) when creating releases.
 
