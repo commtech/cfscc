@@ -480,8 +480,12 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 {
     unsigned char clock_bits[20];
+    int result = 0;
 
-    calculate_clock_bits(frequency, 10, clock_bits);
+    result = calculate_clock_bits(frequency, 10, clock_bits);
+
+    if (result != 0)
+        return FSCC_INVALID_PARAMETER;
 
     return ioctl_set_pointer(h, FSCC_SET_CLOCK_BITS, clock_bits, sizeof(clock_bits));
 }

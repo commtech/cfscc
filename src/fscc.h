@@ -41,7 +41,7 @@ extern "C"
 
 enum error_type { FSCC_TIMEOUT=16000, FSCC_INCORRECT_MODE,
                   FSCC_BUFFER_TOO_SMALL, FSCC_PORT_NOT_FOUND,
-                  FSCC_INVALID_ACCESS };
+                  FSCC_INVALID_ACCESS, FSCC_INVALID_PARAMETER };
 enum transmit_type { XF=0, XREP=1, TXT=2, TXEXT=4 };
 
 #ifdef _WIN32
