@@ -352,9 +352,8 @@ int fscc_disable_rx_multiple(fscc_handle h)
 
 int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o)
 {
-    int result;
-
 #ifdef _WIN32
+    int result;
     DWORD temp;
 
     result = DeviceIoControl(h, (DWORD)FSCC_TRACK_INTERRUPTS,
@@ -364,6 +363,11 @@ int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches,
 
     return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
+    UNUSED(h);
+    UNUSED(interrupts);
+    UNUSED(matches);
+    UNUSED(o);
+
     return 0;
 #endif
 }
@@ -446,6 +450,8 @@ int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsig
 
     return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
+    UNUSED(timeout);
+
     return fscc_track_interrupts(h, interrupts, matches, NULL);
 #endif
 }
