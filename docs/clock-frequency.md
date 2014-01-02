@@ -35,9 +35,10 @@ int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 | `h`          | `fscc_handle` | The handle to your port
 | `frequency`  | `unsigned`    | The new clock frequency (hz)
 
-| Return Value | Cause
-| ------------ | -------
-| `0`          | Success
+| Return Value             | Value   | Cause
+| ------------------------ | ------- | --------------------------------
+| `0`                      | `0`     |
+| `FSCC_INVALID_PARAMETER` | `16005` | Clock frequency is out of range (15,000 to 270,000,000)
 
 
 ###### Examples
