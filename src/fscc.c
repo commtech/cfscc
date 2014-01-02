@@ -352,9 +352,8 @@ int fscc_disable_rx_multiple(fscc_handle h)
 
 int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o)
 {
-    int result;
-
 #ifdef _WIN32
+    int result;
     DWORD temp;
 
     result = DeviceIoControl(h, (DWORD)FSCC_TRACK_INTERRUPTS,
@@ -364,6 +363,11 @@ int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches,
 
     return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
+    UNUSED(h);
+    UNUSED(interrupts);
+    UNUSED(matches);
+    UNUSED(o);
+
     return 0;
 #endif
 }
@@ -446,6 +450,8 @@ int fscc_track_interrupts_with_timeout(fscc_handle h, unsigned interrupts, unsig
 
     return (result == TRUE) ? 0 : translate_error(GetLastError());
 #else
+    UNUSED(timeout);
+
     return fscc_track_interrupts(h, interrupts, matches, NULL);
 #endif
 }
@@ -474,8 +480,12 @@ int fscc_purge(fscc_handle h, unsigned tx, unsigned rx)
 int fscc_set_clock_frequency(fscc_handle h, unsigned frequency)
 {
     unsigned char clock_bits[20];
+    int result = 0;
 
-    calculate_clock_bits(frequency, 10, clock_bits);
+    result = calculate_clock_bits(frequency, 10, clock_bits);
+
+    if (result != 0)
+        return FSCC_INVALID_PARAMETER;
 
     return ioctl_set_pointer(h, FSCC_SET_CLOCK_BITS, clock_bits, sizeof(clock_bits));
 }
