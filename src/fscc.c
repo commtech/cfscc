@@ -87,16 +87,6 @@ int ioctl_action(fscc_handle h, int ioctl_name)
 #endif
 }
 
-int ioctl_set_boolean(fscc_handle h, int ioctl_enable, int ioctl_disable,
-                      unsigned value)
-{
-    int ioctl_name = 0;
-
-    ioctl_name = (value) ? ioctl_enable : ioctl_disable;
-
-    return ioctl_action(h, ioctl_name);
-}
-
 int ioctl_get_boolean(fscc_handle h, int ioctl_name, unsigned *status)
 {
     int result;
@@ -289,14 +279,12 @@ int fscc_get_append_status(fscc_handle h, unsigned *status)
 
 int fscc_enable_append_status(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_STATUS,
-                             FSCC_DISABLE_APPEND_STATUS, 1);
+    return ioctl_action(h, FSCC_ENABLE_APPEND_STATUS);
 }
 
 int fscc_disable_append_status(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_STATUS,
-                             FSCC_DISABLE_APPEND_STATUS, 0);
+    return ioctl_action(h, FSCC_DISBLE_APPEND_STATUS);
 }
 
 int fscc_get_append_timestamp(fscc_handle h, unsigned *status)
@@ -306,14 +294,12 @@ int fscc_get_append_timestamp(fscc_handle h, unsigned *status)
 
 int fscc_enable_append_timestamp(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_TIMESTAMP,
-                             FSCC_DISABLE_APPEND_TIMESTAMP, 1);
+    return ioctl_action(h, FSCC_ENABLE_APPEND_TIMESTAMP);
 }
 
 int fscc_disable_append_timestamp(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_APPEND_TIMESTAMP,
-                             FSCC_DISABLE_APPEND_TIMESTAMP, 0);
+    return ioctl_action(h, FSCC_DISABLE_APPEND_TIMESTAMP);
 }
 
 int fscc_get_ignore_timeout(fscc_handle h, unsigned *status)
@@ -323,14 +309,12 @@ int fscc_get_ignore_timeout(fscc_handle h, unsigned *status)
 
 int fscc_enable_ignore_timeout(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_IGNORE_TIMEOUT,
-                             FSCC_DISABLE_IGNORE_TIMEOUT, 1);
+    return ioctl_action(h, FSCC_ENABLE_IGNORE_TIMEOUT);
 }
 
 int fscc_disable_ignore_timeout(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_IGNORE_TIMEOUT,
-                             FSCC_DISABLE_IGNORE_TIMEOUT, 0);
+    return ioctl_action(h, FSCC_DISABLE_IGNORE_TIMEOUT);
 }
 
 int fscc_get_rx_multiple(fscc_handle h, unsigned *status)
@@ -340,14 +324,12 @@ int fscc_get_rx_multiple(fscc_handle h, unsigned *status)
 
 int fscc_enable_rx_multiple(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_RX_MULTIPLE,
-                             FSCC_DISABLE_RX_MULTIPLE, 1);
+    return ioctl_action(h, FSCC_ENABLE_RX_MULTIPLE);
 }
 
 int fscc_disable_rx_multiple(fscc_handle h)
 {
-    return ioctl_set_boolean(h, FSCC_ENABLE_RX_MULTIPLE,
-                             FSCC_DISABLE_RX_MULTIPLE, 0);
+    return ioctl_action(h, FSCC_DISABLE_RX_MULTIPLE);
 }
 
 int fscc_track_interrupts(fscc_handle h, unsigned interrupts, unsigned *matches, OVERLAPPED *o)
