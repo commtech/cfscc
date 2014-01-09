@@ -284,7 +284,7 @@ int fscc_enable_append_status(fscc_handle h)
 
 int fscc_disable_append_status(fscc_handle h)
 {
-    return ioctl_action(h, FSCC_DISBLE_APPEND_STATUS);
+    return ioctl_action(h, FSCC_DISABLE_APPEND_STATUS);
 }
 
 int fscc_get_append_timestamp(fscc_handle h, unsigned *status)
