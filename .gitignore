@@ -12,3 +12,9 @@
 *.out
 *.ilk
 *.pdb
+
+Debug/
+*.*sdf
+*.filters
+*.user
+*.suo
