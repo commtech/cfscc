@@ -1,9 +1,24 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfscc", "cfscc.vcxproj", "{A157ABBA-1502-450A-BD3A-DCB1C7D20E72}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "loop", "utils\loop\loop.vcxproj", "{75DFCEBB-4BD6-48B4-BBFF-BE61D3F4203A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A157ABBA-1502-450A-BD3A-DCB1C7D20E72} = {A157ABBA-1502-450A-BD3A-DCB1C7D20E72}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "utils\test\test.vcxproj", "{13BA2FEA-6210-40B2-888F-F58A1C358093}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A157ABBA-1502-450A-BD3A-DCB1C7D20E72} = {A157ABBA-1502-450A-BD3A-DCB1C7D20E72}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "r2f", "utils\r2f\r2f.vcxproj", "{504A7ABF-1F86-40D1-8519-0A91DBD7ADD1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A157ABBA-1502-450A-BD3A-DCB1C7D20E72} = {A157ABBA-1502-450A-BD3A-DCB1C7D20E72}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +30,18 @@ Global
 		{A157ABBA-1502-450A-BD3A-DCB1C7D20E72}.Debug|Win32.Build.0 = Debug|Win32
 		{A157ABBA-1502-450A-BD3A-DCB1C7D20E72}.Release|Win32.ActiveCfg = Release|Win32
 		{A157ABBA-1502-450A-BD3A-DCB1C7D20E72}.Release|Win32.Build.0 = Release|Win32
+		{75DFCEBB-4BD6-48B4-BBFF-BE61D3F4203A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{75DFCEBB-4BD6-48B4-BBFF-BE61D3F4203A}.Debug|Win32.Build.0 = Debug|Win32
+		{75DFCEBB-4BD6-48B4-BBFF-BE61D3F4203A}.Release|Win32.ActiveCfg = Release|Win32
+		{75DFCEBB-4BD6-48B4-BBFF-BE61D3F4203A}.Release|Win32.Build.0 = Release|Win32
+		{13BA2FEA-6210-40B2-888F-F58A1C358093}.Debug|Win32.ActiveCfg = Debug|Win32
+		{13BA2FEA-6210-40B2-888F-F58A1C358093}.Debug|Win32.Build.0 = Debug|Win32
+		{13BA2FEA-6210-40B2-888F-F58A1C358093}.Release|Win32.ActiveCfg = Release|Win32
+		{13BA2FEA-6210-40B2-888F-F58A1C358093}.Release|Win32.Build.0 = Release|Win32
+		{504A7ABF-1F86-40D1-8519-0A91DBD7ADD1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{504A7ABF-1F86-40D1-8519-0A91DBD7ADD1}.Debug|Win32.Build.0 = Debug|Win32
+		{504A7ABF-1F86-40D1-8519-0A91DBD7ADD1}.Release|Win32.ActiveCfg = Release|Win32
+		{504A7ABF-1F86-40D1-8519-0A91DBD7ADD1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
