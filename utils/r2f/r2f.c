@@ -44,7 +44,16 @@ int main(int argc, char *argv[])
         return EXIT_FAILURE;
     }
 
+#ifdef _WIN32
+    e = fopen_s(&file, "out.hex", "wb");
+    if (e != 0) {
+        fscc_disconnect(h);
+        fprintf(stderr, "fopen_s failed with %d\n", e);
+        return EXIT_FAILURE;
+    }
+#else
     file = fopen("out.hex", "wb");
+#endif
     if (file == NULL) {
         fscc_disconnect(h);
         fprintf(stderr, "cannot open output file %s\n", "out.hex");
