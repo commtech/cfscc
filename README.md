@@ -104,6 +104,10 @@ The process for using the library will differ slightly depending on the version 
 - C compiler (GCC & Visual Studio tested)
 
 
+## Run-time Dependencies
+- OS: Windows XP+ & Linux
+
+
 ## API Compatibility
 We follow [Semantic Versioning](http://semver.org/) when creating releases.
 
