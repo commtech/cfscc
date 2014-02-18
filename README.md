@@ -100,7 +100,7 @@ The process for using the library will differ slightly depending on the version 
 4. Place cfscc.dll into the same folder as your executable
 
 
-## Dependencies
+## Build Dependencies
 - C compiler (GCC & Visual Studio tested)
 
 
