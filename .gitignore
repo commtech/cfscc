@@ -13,6 +13,7 @@
 *.ilk
 *.pdb
 bin/
+*.pnproj
 
 Debug/
 *.*sdf
