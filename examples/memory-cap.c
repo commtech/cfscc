@@ -8,7 +8,7 @@ int main(void)
     fscc_connect(0, &h);
 
     memcap.input = 1000000; /* 1 MB */
-    memcap.output = 2000000; /* 2 MB */
+    memcap.output = 1000000; /* 1 MB */
 
     fscc_set_memory_cap(h, &memcap);
 

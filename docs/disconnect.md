@@ -1,12 +1,11 @@
 # Disconnect
 
-
 ###### Support
-| Code           | Version
-| -------------- | --------
-| `fscc-windows` | `v2.0.0` 
-| `fscc-linux`   | `v2.0.0` 
-| `cfscc`        | `v1.0.0`
+| Code | Version |
+| ---- | ------- |
+| fscc-windows | 2.0.0 |
+| fscc-linux | 2.0.0 |
+| cfscc | 1.0.0 |
 
 
 ## Disconnect
@@ -14,13 +13,13 @@
 int fscc_disconnect(fscc_handle h)
 ```
 
-| Parameter     | Type         | Description
-| ------------ | ------------- | -----------------------
-| `h`          | `fscc_handle` | The handle to your port
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| `h` | `fscc_handle` | The handle to your port |
 
-| Return Value | Cause
-| ------------ | -------
-| `0`          | Success
+| Return Value | Cause |
+| ------------:| ----- |
+| 0 | Success |
 
 ###### Examples
 ```c
@@ -32,5 +31,5 @@ fscc_disconnect(h);
 
 
 ### Additional Resources
-- Complete example: [`examples\tutorial.c`](https://github.com/commtech/cfscc/blob/master/examples/tutorial.c)
-- Implemenation details: [`src\fscc.c`](https://github.com/commtech/cfscc/blob/master/src/fscc.c)
+- Complete example: [`examples/tutorial.c`](../examples/tutorial.c)
+- Implementation details: [`src/fscc.c`](../src/fscc.c)

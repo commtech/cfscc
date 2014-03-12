@@ -13,11 +13,9 @@ This README file is best viewed [online](http://github.com/commtech/cfscc/).
 
 Lets get started with a quick programming example for fun.
 
-_This tutorial has already been set up for you at_ 
-[`examples/tutorial.c`](https://github.com/commtech/cfscc/tree/master/examples/tutorial.c).
+_This tutorial has already been set up for you at_ [`examples/tutorial.c`](examples/tutorial.c).
 
-First, drop `cfscc.dll` and `cfscc.lib` into a test directory. Now that those files are 
-copied over, create a new C file (named tutorial.c) with the following code.
+First, drop `cfscc.dll` and `cfscc.lib` into a test directory. Now that those files are copied over, create a new C file (named tutorial.c) with the following code.
 
 ```c
 #include <stdio.h> /* fprintf */
@@ -53,8 +51,7 @@ int main(void)
 }
 ```
 
-For this example I will use the Visual Studio command line compiler, but
-you can use your compiler of choice.
+For this example I will use the Visual Studio command line compiler, but you can use your compiler of choice.
 
 ```
 # cl tutorial.c cfscc.lib /I <CFSCC_DIR>\src\
@@ -67,28 +64,27 @@ Now attach the included loopback connector.
 Hello world!
 ```
 
-You have now transmitted and received an HDLC frame! 
+You have now transmitted and received an HDLC frame!
 
 
 ## API Reference
 
-There are likely other configuration options you will need to set up for your 
-own program. All of these options are described on their respective documentation page.
+There are likely other configuration options you will need to set up for your own program. All of these options are described on their respective documentation page.
 
-- [Connect](https://github.com/commtech/cfscc/blob/master/docs/connect.md)
-- [Append Status](https://github.com/commtech/cfscc/blob/master/docs/append-status.md)
-- [Append Timestamp](https://github.com/commtech/cfscc/blob/master/docs/append-timestamp.md)
-- [Clock Frequency](https://github.com/commtech/cfscc/blob/master/docs/clock-frequency.md)
-- [Ignore Timeout](https://github.com/commtech/cfscc/blob/master/docs/ignore-timeout.md)
-- [RX Multiple](https://github.com/commtech/cfscc/blob/master/docs/rx-multiple.md)
-- [Memory Cap](https://github.com/commtech/cfscc/blob/master/docs/memory-cap.md)
-- [Purge](https://github.com/commtech/cfscc/blob/master/docs/purge.md)
-- [Registers](https://github.com/commtech/cfscc/blob/master/docs/registers.md)
-- [TX Modifiers](https://github.com/commtech/cfscc/blob/master/docs/tx-modifiers.md)
-- [Track Interrupts](https://github.com/commtech/cfscc/blob/master/docs/track-interrupts.md)
-- [Write](https://github.com/commtech/cfscc/blob/master/docs/write.md)
-- [Read](https://github.com/commtech/cfscc/blob/master/docs/read.md)
-- [Disconnect](https://github.com/commtech/cfscc/blob/master/docs/disconnect.md)
+- [Connect](docs/connect.md)
+- [Append Status](docs/append-status.md)
+- [Append Timestamp](docs/append-timestamp.md)
+- [Clock Frequency](docs/clock-frequency.md)
+- [Ignore Timeout](docs/ignore-timeout.md)
+- [Memory Cap](docs/memory-cap.md)
+- [Purge](docs/purge.md)
+- [Read](docs/read.md)
+- [Registers](docs/registers.md)
+- [RX Multiple](docs/rx-multiple.md)
+- [Track Interrupts](docs/track-interrupts.md)
+- [TX Modifiers](docs/tx-modifiers.md)
+- [Write](docs/write.md)
+- [Disconnect](docs/disconnect.md)
 
 
 ## Visual Studio Integration
