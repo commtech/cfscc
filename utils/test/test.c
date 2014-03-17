@@ -179,7 +179,7 @@ int loop(fscc_handle h)
     int e = 0;
 
     memset(&odata, 0x01, sizeof(odata));
-    memset(&idata, 0, sizeof(idata));
+    memset(&idata, 0x00, sizeof(idata));
 
     e = fscc_write_with_blocking(h, odata, sizeof(odata), &bytes_written);
     if (e != 0) {
