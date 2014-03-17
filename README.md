@@ -90,10 +90,10 @@ There are likely other configuration options you will need to set up for your ow
 ## Visual Studio Integration
 The process for using the library will differ slightly depending on the version of Visual Studio.
 
-1. Configuration Properties -> C/C++ -> General = fscc\bin\fscc\lib\fscc\c (path to .h file)
-2. Configuration Properties -> Linker -> General = fscc\bin\fscc\lib\fscc\c (path to .lib file)
-3. Configuration Properties -> Linker -> Input -> Additional Dependencies = cfscc.lib
-4. Place cfscc.dll into the same folder as your executable
+1. Configuration Properties -> C/C++ -> General -> Additional Include Directories: (folder containing fscc.h)
+2. Configuration Properties -> Linker -> General -> Additional Library Directories: (folder containing cfscc{d}.lib)
+3. Configuration Properties -> Linker -> Input -> Additional Dependencies: cfscc{d}.lib
+4. Configuration Properties -> Debugging -> Environment: PATH=%PATH%;(folder containing cfscc{d}.dll)
 
 
 ## Build Dependencies
