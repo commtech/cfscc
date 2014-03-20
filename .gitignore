@@ -21,3 +21,7 @@ Debug/
 *.user
 *.suo
 *lastcodeanalysissucceeded
+
+utils/test/test
+utils/loop/loop
+utils/r2f/r2f
