@@ -21,7 +21,12 @@ Debug/
 *.user
 *.suo
 *lastcodeanalysissucceeded
+
 *.aps
 *.res
 resource.h
 RCa59908
+
+utils/test/test
+utils/loop/loop
+utils/r2f/r2f
