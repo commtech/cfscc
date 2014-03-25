@@ -21,3 +21,7 @@ Debug/
 *.user
 *.suo
 *lastcodeanalysissucceeded
+*.aps
+*.res
+resource.h
+RCa59908
