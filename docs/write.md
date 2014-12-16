@@ -18,7 +18,7 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 | `h` | `fscc_handle` | The handle to your port |
 | `buf` | `char *` | The data buffer to transmit |
 | `size` | `unsigned` | The number of bytes to transmit |
-| `bytes_read` | `unsigned *` | How many bytes were written to the read |
+| `bytes_written` | `unsigned *` | How many bytes were written to the FIFO |
 | `o` | `OVERLAPPED *` | [Overlapped IO structure](http://msdn.microsoft.com/en-us/library/windows/desktop/ms686358.aspx) |
 
 | Return Code | Value | Cause |
@@ -27,6 +27,7 @@ int fscc_write(fscc_handle h, char *buf, unsigned size, unsigned *bytes_written,
 | `FSCC_TIMEOUT` | 16000 | Command timed out (missing clock) |
 | `FSCC_INCORRECT_MODE` | 16001 | Using the synchronous port while in asynchronous mode |
 | `FSCC_BUFFER_TOO_SMALL` | 16002 | The write size exceeds the output memory usage cap |
+| `Other` | `Other` | [`See Windows System standard error codes`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx) |
 
 ###### Examples
 ```c
@@ -50,7 +51,7 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *
 | `h` | `fscc_handle`    | The handle to your port |
 | `buf` | `char *` | The data buffer to transmit |
 | `size` | `unsigned` | The number of bytes to transmit |
-| `bytes_read` | `unsigned *` | How many bytes were written to the read |
+| `bytes_written` | `unsigned *` | How many bytes were written to the FIFO |
 
 | Return Code | Value | Cause |
 | ----------- | -----:| ----- |
@@ -58,6 +59,7 @@ int fscc_write_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *
 | `FSCC_TIMEOUT` | 16000 | Command timed out (missing clock) |
 | `FSCC_INCORRECT_MODE` | 16001 | Using the synchronous port while in asynchronous mode |
 | `FSCC_BUFFER_TOO_SMALL` | 16002 | The write size exceeds the output memory usage cap |
+| `Other` | `Other` | [`See Windows System standard error codes`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx) |
 
 ###### Examples
 ```c

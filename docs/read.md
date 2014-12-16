@@ -37,6 +37,7 @@ int fscc_read(fscc_handle h, char *buf, unsigned size, unsigned *bytes_read, OVE
 | | 0 | Success |
 | `FSCC_INCORRECT_MODE` | 16001 | Using the synchronous port while in asynchronous mode |
 | `FSCC_BUFFER_TOO_SMALL` | 16002 | The buffer size is smaller than the next frame |
+| `Other` | `Other` | [`See Windows System standard error codes`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx) |
 
 ###### Examples
 ```c
@@ -60,7 +61,7 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *by
 | `h` | `fscc_handle` | The handle to your port |
 | `buf` | `char *` | The data buffer to hold incoming data |
 | `size` | `unsigned` | The data buffer size |
-| `bytes_read` | `unsigned *` | How many bytes were returned from the read |
+| `bytes_read` | `unsigned *` | How many bytes were returned to the buffer |
 | `timeout` | `unsigned` | Number of milliseconds to wait for data before timing out |
 
 | Return Code | Value | Cause |
@@ -68,6 +69,7 @@ int fscc_read_with_timeout(fscc_handle h, char *buf, unsigned size, unsigned *by
 | | 0 | Success |
 | `FSCC_INCORRECT_MODE` | 16001 | Using the synchronous port while in asynchronous modes |
 | `FSCC_BUFFER_TOO_SMALL` | 16002 | The buffer size is smaller than the next frames |
+| `Other` | `Other` | [`See Windows System standard error codes`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx) |
 
 ###### Examples
 ```c
@@ -91,13 +93,14 @@ int fscc_read_with_blocking(fscc_handle h, char *buf, unsigned size, unsigned *b
 | `h` | `fscc_handle` | The handle to your port |
 | `buf` | `char *` | The data buffer to hold incoming data |
 | `size` | `unsigned` | The data buffer size |
-| `bytes_read` | `unsigned *` | How many bytes were returned from the read |
+| `bytes_read` | `unsigned *` | How many bytes were returned to the buffer |
 
 | Return Code | Value | Cause |
 | ----------- | -----:| ----- |
 | | 0 | Success |
 | `FSCC_INCORRECT_MODE` | 16001 | Using the synchronous port while in asynchronous mode |
 | `FSCC_BUFFER_TOO_SMALL` | 16002 | The buffer size is smaller than the next frame |
+| `Other` | `Other` | [`See Windows System standard error codes`](http://msdn.microsoft.com/en-us/library/windows/desktop/ms681381%28v=vs.85%29.aspx) |
 
 ###### Examples
 ```c
